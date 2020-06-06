@@ -2,7 +2,7 @@ import Alert from '../components/alert'
 import Footer from '../components/footer'
 import Meta from '../components/meta'
 
-export default function Layout({ preview, children }) {
+export default function Layout({ preview, footer, children }) {
   return (
     <>
       <Meta />
@@ -11,6 +11,11 @@ export default function Layout({ preview, children }) {
         <main>{children}</main>
       </div>
       <Footer />
+        <ul>
+          { footer && footer.links.map(({ fields: { text, url } }, i) =>
+            <li key={i}><a href={url}>{text}</a></li>
+          )}
+        </ul>
     </>
   )
 }
