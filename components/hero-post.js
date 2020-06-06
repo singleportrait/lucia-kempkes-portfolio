@@ -6,7 +6,6 @@ import CoverImage from '../components/cover-image'
 export default function HeroPost({
   title,
   coverImage,
-  date,
   excerpt,
   author,
   slug,
@@ -24,7 +23,7 @@ export default function HeroPost({
             </Link>
           </h3>
           <div className="mb-4 md:mb-0 text-lg">
-            <Date dateString={date} />
+            Date
           </div>
         </div>
         <div>
