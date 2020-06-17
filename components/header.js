@@ -1,12 +1,23 @@
 import Link from 'next/link'
+import styles from './header.module.css'
+import cn from 'classnames';
 
 export default function Header() {
   return (
-    <h2 className="text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8">
-      <Link href="/">
-        <a className="hover:underline">Blog</a>
-      </Link>
-      .
-    </h2>
+    <div className={styles.header}>
+      <div className="grid">
+        <div className="grid-left">
+          <a href="/" className={cn(styles.navigation, styles.navigationPrevious)}>Previous</a>
+        </div>
+        <div className={cn("grid-center", styles.siteTitle)}>
+          <Link href="/">
+            <a>Lucia Kempkes</a>
+          </Link>
+        </div>
+        <div className="grid-right">
+          <a href="/" className={cn(styles.navigation, styles.navigationNext)}>Next</a>
+        </div>
+      </div>
+    </div>
   )
 }

@@ -1,0 +1,28 @@
+.header {
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--accent-color);
+  z-index: 2;
+}
+
+.navigation, .siteTitle {
+  display: flex;
+  width: 100%;
+  height: var(--header-height);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.siteTitle {
+  font-family: var(--accent-font);
+  font-size: 1.1rem;
+}
+
+.navigationPrevious {
+  background-color: beige;
+}
+
+.navigationNext {
+  background-color: aqua;
+}
