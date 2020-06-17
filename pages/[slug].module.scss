@@ -1,0 +1,79 @@
+$selectors: "p, h1, h2, h3, h4, h5, h6, blockquote, ul, ol";
+
+$elementIndent: "3rem";
+
+.bodyHeader {
+  text-align: center;
+}
+
+.bodyContent {
+  a {
+    text-decoration: underline;
+   }
+
+  hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 1rem;
+  }
+
+  > #{$selectors} {
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #fff;
+  }
+
+  hr + p,
+  hr + h1,
+  hr + h2 /* etc... */ {
+    padding-top: 1rem;
+  }
+
+  p + hr,
+  h1 + hr,
+  h2 + hr /* etc... */ {
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+
+  blockquote {
+    padding-left: #{$elementIndent};
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: "";
+      border-left: 6px solid var(--accent-color);
+      top: .5rem;
+      bottom: .5rem;
+      margin-left: -1.1rem;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: #{$elementIndent};
+  }
+
+  ol {
+    list-style-type: decimal;
+    padding-left: #{$elementIndent};
+  }
+
+  /* Contentful is putting empty paragraph tags underneath the last HRs */
+  p:empty:last-of-type {
+    border: none;
+  }
+
+  @media screen and (max-width: 700px) {
+    hr,
+    p,
+    h1 /* etc... */ {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}

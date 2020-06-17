@@ -1,15 +1,18 @@
 import { useRouter } from 'next/router'
+import cn from 'classnames';
 import Link from 'next/link'
 import Head from 'next/head'
 import ErrorPage from 'next/error'
-import Container from '../components/container'
+// import Container from '../components/container'
 import Header from '../components/header'
 import Layout from '../components/layout'
-import PostTitle from '../components/post-title'
+// import PostTitle from '../components/post-title'
 import { getPage, getAllPagesWithSlug, getFooter } from '../lib/api'
-import { CMS_NAME } from '../lib/constants'
+// import { CMS_NAME } from '../lib/constants'
 
-import { BLOCKS } from '@contentful/rich-text-types';
+import styles from './[slug].module.scss'
+
+import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import JSONPretty from 'react-json-pretty';
 
@@ -24,28 +27,41 @@ export default function Page({ page, footer, preview }) {
 
   const options = {
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className={paragraphClass(node)}>{children}</p>
-      ),
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1 className="text-4xl lg:text-6xl leading-tight">{children}</h1>
       ),
       [BLOCKS.EMBEDDED_ENTRY]: (node) => (
         <>
-          <div>(Embedded Entry)</div>
           <div style={{border: "1px solid #000", padding: "1rem"}}>
-            {documentToReactComponents(node.data.target.fields.text, options)}
+            <div>(Embedded Entry)</div>
+            {node.data.target.fields && documentToReactComponents(node.data.target.fields.text, options)}
           </div>
         </>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => (
         // JSON.stringify(node)
         <>
-          <div>(Embedded Image)</div>
-          <img src={node.data.target.fields.file.url} />
-          <small>
-            {node.data.target.fields.title}, {node.data.target.fields.description}
-          </small>
+          {node.data.target.fields &&
+            <>
+              <img src={node.data.target.fields.file.url} />
+              <small>
+                {node.data.target.fields.title}, {node.data.target.fields.description}
+              </small>
+            </>
+          }
+        </>
+      ),
+      [INLINES.ENTRY_HYPERLINK]: (node) => (
+        <>
+          <Link as={node.data.target.fields.slug} href="[slug]">
+            <a>{node.content[0].value}</a>
+          </Link>
+          {/* <JSONPretty data={node} /> */}
+        </>
+      ),
+      [INLINES.HYPERLINK]: (node) => (
+        <>
+          <a href={node.data.uri} target="_blank">{node.content[0].value}</a>
         </>
       ),
     }
@@ -59,8 +75,12 @@ export default function Page({ page, footer, preview }) {
 
   return (
     <Layout preview={preview} footer={footer}>
-      <Container>
-        <Header />
+      <>
+        <Header
+          previousPage
+          nextPage
+          parentPage
+        />
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
@@ -68,22 +88,39 @@ export default function Page({ page, footer, preview }) {
             <Head>
               <title>{page.title} - Lucia Kempkes</title>
             </Head>
-            <div>
-              <h1>{page.title}</h1>
-              { page.parentPageSlug &&
-                <div>
-                  <Link as={page.parentPageSlug} href="[slug]">
-                    <a>Back</a>
-                  </Link>
-                  Has a parent page
+            <div className="content">
+              <div className="grid">
+                <div className="grid-left"></div>
+                <div className="grid-center">
+                  <h1 className={styles.bodyHeader}>{page.title}</h1>
                 </div>
-              }
-              <hr />
-              { documentToReactComponents(page.body, options) }
+                <div className="grid-right"></div>
+              </div>
+
+              <div className="grid">
+                <div className="grid-widescreen-left"></div>
+                <div className={cn("grid-widescreen-center", styles.bodyContent)}>
+                  { page.body && documentToReactComponents(page.body, options) }
+                  {/* <h1>JSON prettify</h1> */}
+                  {/* <div style={{backgroundColor: "beige"}}> */}
+                  {/*   <JSONPretty data={page.body} /> */}
+                  {/* </div> */}
+                </div>
+                <div className="grid-widescreen-right"></div>
+              </div>
             </div>
+
+            { page.parentPageSlug &&
+              <div>
+                <Link as={page.parentPageSlug} href="[slug]">
+                  <a>Back</a>
+                </Link>
+                Has a parent page
+              </div>
+            }
           </>
         )}
-      </Container>
+      </>
     </Layout>
   )
 
