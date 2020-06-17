@@ -1,0 +1,56 @@
+.homepageImagesContainer {
+  position: absolute;
+  /* Forcing page to have a scroll bar keeps page in same position */
+  height: calc(100vh - var(--header-height));
+  width: 100%;
+  z-index: 0;
+}
+
+.homepageImages {
+  height: calc(100% - var(--footer-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepageImage {
+  max-height: 90%;
+}
+
+.homepageLinks {
+  position: relative;
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.homepageLinkListItem {
+  padding: .5rem 0;
+}
+
+.homepageLink {
+  display: inline-block;
+  position: relative;
+}
+
+.homepageLink:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 700px) {
+  .homepageLink:hover:after {
+    content: "View";
+    position: absolute;
+    font-size: .75rem;
+    font-family: var(--accent-font);
+    background-color: var(--accent-color);
+    text-transform: none;
+    /* bottom: .95rem; */
+    bottom: .45rem;
+    margin-left: .5rem;
+    padding: 2px 4px 1px;
+  }
+}
