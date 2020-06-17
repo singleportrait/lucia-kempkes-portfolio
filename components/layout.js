@@ -6,16 +6,16 @@ export default function Layout({ preview, footer, children }) {
   return (
     <>
       <Meta />
-      <div className="min-h-screen">
+      <div>
+        <div className="grid grid--background">
+          <div className="grid-left"></div>
+          <div className="grid-right"></div>
+        </div>
+
         <Alert preview={preview} />
         <main>{children}</main>
       </div>
-      <Footer />
-        <ul>
-          { footer && footer.links.map(({ fields: { text, url } }, i) =>
-            <li key={i}><a href={url}>{text}</a></li>
-          )}
-        </ul>
+      <Footer footer={footer} />
     </>
   )
 }
