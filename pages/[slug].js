@@ -7,7 +7,7 @@ import ErrorPage from 'next/error'
 import Header from '../components/header'
 import Layout from '../components/layout'
 // import PostTitle from '../components/post-title'
-import { getPage, getAllPagesWithSlug, getFooter } from '../lib/api'
+import { getPage, getFooter, getHomepageProjectSlugs, getAllPagesWithSlug } from '../lib/api'
 // import { CMS_NAME } from '../lib/constants'
 
 import styles from './[slug].module.scss'
@@ -16,7 +16,13 @@ import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import JSONPretty from 'react-json-pretty';
 
-export default function Page({ page, footer, preview }) {
+export default function Page({
+  page,
+  previousPage,
+  nextPage,
+  footer,
+  preview
+}) {
   const router = useRouter();
 
   if (!router.isFallback && !page) {
@@ -77,9 +83,9 @@ export default function Page({ page, footer, preview }) {
     <Layout preview={preview} footer={footer}>
       <>
         <Header
-          previousPage
-          nextPage
-          parentPage
+          previousPage={previousPage}
+          nextPage={nextPage}
+          parentPage={page.parentPageSlug}
         />
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
@@ -101,7 +107,7 @@ export default function Page({ page, footer, preview }) {
                 <div className="grid-widescreen-left"></div>
                 <div className={cn("grid-widescreen-center", styles.bodyContent)}>
                   { page.body && documentToReactComponents(page.body, options) }
-                  {/* <h1>JSON prettify</h1> */}
+                  {/* <JSONPretty data={carouselSlugs} /> */}
                   {/* <div style={{backgroundColor: "beige"}}> */}
                   {/*   <JSONPretty data={page} /> */}
                   {/* </div> */}
@@ -140,9 +146,20 @@ export async function getStaticProps({ params, preview = false }) {
   const page = await getPage(params.slug, preview);
   const footer = await getFooter();
 
+  const carouselSlugs = await getHomepageProjectSlugs();
+  const pageIndex = carouselSlugs.indexOf(params.slug);
+  let previousPage, nextPage;
+
+  if (pageIndex !== -1) {
+    previousPage = pageIndex === 0 ? carouselSlugs[carouselSlugs.length - 1] : carouselSlugs[pageIndex - 1];
+    nextPage = pageIndex === carouselSlugs.length - 1 ? carouselSlugs[0] : carouselSlugs[pageIndex + 1];
+  }
+
   return {
     props: {
       page: page ?? null,
+      previousPage: previousPage || null,
+      nextPage: nextPage || null,
       footer,
       preview,
     }
