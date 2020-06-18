@@ -1,0 +1,25 @@
+.homepageImagesContainer {
+  position: absolute;
+  /* Forcing page to have a scroll bar keeps page in same position */
+  height: calc(100vh - var(--header-height));
+  width: 100%;
+  z-index: 0;
+}
+
+.homepageImages {
+  height: calc(100% - var(--footer-links-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepageImage {
+  max-height: 90%;
+}
+
+.homepageVerticalImage {
+  width: 100%;
+  height: calc(100vh - var(--header-height) - var(--footer-links-height) - 2rem);
+  background-size: cover;
+  background-position: center center;
+}
