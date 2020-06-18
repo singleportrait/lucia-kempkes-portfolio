@@ -4,8 +4,12 @@
   border-bottom: 1px solid var(--accent-color);
   z-index: 2;
 
+  :global(.noActiveProject) & {
+    border-color: var(--background-color);
+  }
+
   @media screen and (max-width: 700px) {
-    .index & {
+    :global(.index) & {
       border-color: var(--background-color);
     }
   }

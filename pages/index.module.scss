@@ -1,20 +1,29 @@
-.homepageImagesContainer {
-  position: absolute;
-  /* Forcing page to have a scroll bar keeps page in same position */
-  height: calc(100vh - var(--header-height));
-  width: 100%;
-  z-index: 0;
+.index {
+  height: 100%;
 }
 
-.homepageImages {
-  height: calc(100% - var(--footer-links-height));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.index.noActiveProject {
+  background-color: var(--accent-color);
+
+  :global(.grid-left),
+  :global(.grid-widescreen-left),
+  :global(.grid-right),
+  :global(.grid-widescreen-right) {
+    border-color: var(--background-color);
+  }
 }
 
-.homepageImage {
-  max-height: 90%;
+@media screen and (max-width: 700px) {
+  .index {
+    background-color: var(--accent-color);
+  }
+
+  .index :global(.grid-left),
+  .index :global(.grid-widescreen-left),
+  .index :global(.grid-right),
+  .index :global(.grid-widescreen-right) {
+    border-color: var(--background-color);
+  }
 }
 
 .homepageLinks {
