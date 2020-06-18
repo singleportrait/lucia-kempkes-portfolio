@@ -3,6 +3,12 @@
   top: 0;
   border-bottom: 1px solid var(--accent-color);
   z-index: 2;
+
+  @media screen and (max-width: 700px) {
+    .index & {
+      border-color: var(--background-color);
+    }
+  }
 }
 
 .navigation, .siteTitle {
@@ -25,4 +31,8 @@
 
 .navigationNext {
   background-color: aqua;
+}
+
+.navigationBack {
+  background-color: aliceblue;
 }

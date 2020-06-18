@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import styles from './footer.module.css'
+import styles from './footerLinks.module.css'
 import { EXAMPLE_PATH } from '../lib/constants'
 import cn from 'classnames';
 
-export default function Footer(props) {
+export default function FooterLinks(props) {
   return (
-    <div className={styles.footer}>
+    <div className={styles.footerLinksContainer}>
       <div className="grid">
         <ul className={cn("grid-center", styles.footerLinks)}>
           { props.footer && props.footer.links.map(({ fields: { text, url } }, i) =>

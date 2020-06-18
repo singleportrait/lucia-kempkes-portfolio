@@ -14,29 +14,25 @@ $elementIndent: "3rem";
   hr {
     margin: 0;
     border: 0;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--neutral-color);
     margin-top: 1rem;
+
+    & + #{$selectors} {
+      padding-top: 1rem;
+    }
   }
 
   > #{$selectors} {
-    border-left: 1px solid var(--border-color);
-    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--neutral-color);
+    border-right: 1px solid var(--neutral-color);
     padding-left: 1rem;
     padding-right: 1rem;
     background-color: #fff;
-  }
 
-  hr + p,
-  hr + h1,
-  hr + h2 /* etc... */ {
-    padding-top: 1rem;
-  }
-
-  p + hr,
-  h1 + hr,
-  h2 + hr /* etc... */ {
-    margin-bottom: 1rem;
-    margin-top: 0;
+    & + hr {
+      margin-bottom: 1rem;
+      margin-top: 0;
+    }
   }
 
   blockquote {
@@ -70,10 +66,25 @@ $elementIndent: "3rem";
 
   @media screen and (max-width: 700px) {
     hr,
-    p,
-    h1 /* etc... */ {
+    #{$selectors} {
       margin-left: 1rem;
       margin-right: 1rem;
     }
   }
+}
+
+.footer {
+  border-top: 1px solid var(--accent-color);
+  text-align: center;
+  height: var(--footer-height);
+
+  @media screen and (max-width: 700px) {
+    .index & {
+      border-color: var(--background-color);
+    }
+  }
+}
+
+.footerCopyright {
+  padding-top: 1rem;
 }

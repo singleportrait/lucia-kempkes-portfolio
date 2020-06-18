@@ -1,5 +1,5 @@
 import Alert from '../components/alert'
-import Footer from '../components/footer'
+import FooterLinks from '../components/footerLinks'
 import Meta from '../components/meta'
 
 export default function Layout({ preview, footer, children }) {
@@ -15,7 +15,7 @@ export default function Layout({ preview, footer, children }) {
         <Alert preview={preview} />
         <main>{children}</main>
       </div>
-      <Footer footer={footer} />
+      <FooterLinks footer={footer} />
     </>
   )
 }

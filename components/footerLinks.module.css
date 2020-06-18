@@ -1,17 +1,4 @@
-.footer {
-  border-top: 1px solid var(--accent-color);
-  text-align: center;
-}
-
-.footer .grid {
-  height: 10rem;
-}
-
-.footerCopyright {
-  padding-top: 1rem;
-}
-
-.footer {
+.footerLinksContainer {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -21,7 +8,7 @@
 .footerLinks {
   display: flex;
   justify-content: space-between;
-  height: var(--footer-height);
+  height: var(--footer-links-height);
   width: 100%;
   align-items: center;
 }

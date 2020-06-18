@@ -103,10 +103,20 @@ export default function Page({ page, footer, preview }) {
                   { page.body && documentToReactComponents(page.body, options) }
                   {/* <h1>JSON prettify</h1> */}
                   {/* <div style={{backgroundColor: "beige"}}> */}
-                  {/*   <JSONPretty data={page.body} /> */}
+                  {/*   <JSONPretty data={page} /> */}
                   {/* </div> */}
                 </div>
                 <div className="grid-widescreen-right"></div>
+              </div>
+            </div>
+
+            <div className={styles.footer}>
+              <div className="grid">
+                <div className="grid-left"></div>
+                <div className={cn("grid-center", styles.footerCopyright)}>
+                  &copy; 2020 Lucia Kempkes
+                </div>
+                <div className="grid-right"></div>
               </div>
             </div>
 
