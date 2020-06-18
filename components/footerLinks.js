@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import styles from './footerLinks.module.css'
+import styles from './footerLinks.module.scss'
 import { EXAMPLE_PATH } from '../lib/constants'
 import cn from 'classnames';
 
