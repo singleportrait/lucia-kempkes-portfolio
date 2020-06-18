@@ -17,6 +17,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-json-pretty": "^2.2.0",
+    "react-responsive": "^8.1.0",
     "sass": "^1.26.8"
   },
   "devDependencies": {
