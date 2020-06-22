@@ -3,10 +3,8 @@ import cn from 'classnames';
 import Link from 'next/link'
 import Head from 'next/head'
 import ErrorPage from 'next/error'
-// import Container from '../components/container'
 import Header from '../components/header'
 import Layout from '../components/layout'
-// import PostTitle from '../components/post-title'
 import { getPage, getFooter, getHomepageProjectSlugs, getAllPagesWithSlug } from '../lib/api'
 // import { CMS_NAME } from '../lib/constants'
 
@@ -89,7 +87,7 @@ export default function Page({
           parentPage={parentPageSlug}
         />
         {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
+          <h1>Loading…</h1>
         ) : (
           <>
             <Head>
