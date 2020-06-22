@@ -34,3 +34,7 @@ export default function Header(props) {
     </div>
   )
 }
+
+Header.defaultProps = {
+  parentPage: null,
+};

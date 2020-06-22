@@ -20,6 +20,7 @@ export default function Page({
   page,
   previousPage,
   nextPage,
+  parentPageSlug,
   footer,
   preview
 }) {
@@ -85,7 +86,7 @@ export default function Page({
         <Header
           previousPage={previousPage}
           nextPage={nextPage}
-          parentPage={page.parentPageSlug}
+          parentPage={parentPageSlug}
         />
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
@@ -126,9 +127,9 @@ export default function Page({
               </div>
             </div>
 
-            { page.parentPageSlug &&
+            { parentPageSlug &&
               <div>
-                <Link as={page.parentPageSlug} href="[slug]">
+                <Link as={parentPageSlug} href="[slug]">
                   <a>Back</a>
                 </Link>
                 Has a parent page
@@ -160,6 +161,7 @@ export async function getStaticProps({ params, preview = false }) {
       page: page ?? null,
       previousPage: previousPage || null,
       nextPage: nextPage || null,
+      parentPageSlug: page.parentPageSlug || null,
       footer,
       preview,
     }
