@@ -19,14 +19,17 @@ export default function HomepageImages(props) {
                         }}
                       />
                     }
+                    { verticalPreviewImage?.fields.file.contentType.includes("video") &&
+                      "Move preview background"
+                    }
                   </>
                 }
                 { !props.verticalImages &&
                   <>
-                    {horizontalPreviewImage?.fields.file.contentType.includes("image") &&
+                    { horizontalPreviewImage?.fields.file.contentType.includes("image") &&
                     <img src={horizontalPreviewImage.fields.file.url} className={styles.homepageImage} />
                     }
-                    {horizontalPreviewImage?.fields.file.contentType.includes("video") &&
+                    { horizontalPreviewImage?.fields.file.contentType.includes("video") &&
                       "Movie preview file"
                     }
                   </>

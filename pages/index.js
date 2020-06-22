@@ -9,6 +9,7 @@ import Header from '../components/header'
 // import HeroPost from '../components/hero-post'
 import Layout from '../components/layout'
 import HomepageImages from '../components/homepageImages'
+import HomepageLinks from '../components/homepageLinks'
 import { getHomepage, getFooter } from '../lib/api'
 import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
@@ -36,53 +37,27 @@ export default function Index({ preview, homepage, footer }) {
         <Head>
           <title>Next.js Blog Example with {CMS_NAME}</title>
         </Head>
-        <>
-          <Header />
-          <div className="content">
-            <div className="grid">
-              <div className="grid-wide-center">
-                <HomepageImages
-                  projects={homepage.projects}
-                  activeProject={activeProject}
-                  verticalImages={isPortraitAndMobile}
-                />
-              </div>
+        <Header />
+        <div className="content">
+          <div className="grid">
+            <div className="grid-wide-center">
+              <HomepageImages
+                projects={homepage.projects}
+                activeProject={activeProject}
+                verticalImages={isPortraitAndMobile}
+              />
+            </div>
 
-              <div className="grid-center">
-                <ul className={styles.homepageLinks}>
-                  { homepage.projects.map(({ fields: { slug, title }}, i) =>
-                    <li className={styles.homepageLinkListItem} key={i}>
-                      <h1 className={styles.homepageH1}>
-                        { (!isPortraitAndMobile || activeProject === slug) &&
-                          <Link as={slug} href="[slug]">
-                            <a
-                              className={cn(
-                                styles.homepageLink,
-                                (activeProject === slug || !activeProject) && styles.activeLink
-                              )}
-                              onMouseEnter={() => setActiveProject(slug)}
-                              onMouseLeave={() => setActiveProject()}
-                            >
-                              {title}
-                            </a>
-                          </Link>
-                        }
-                        { isPortraitAndMobile && activeProject !== slug &&
-                          <div
-                            className={styles.homepageLink}
-                            onClick={() => setActiveProject(slug)}
-                          >
-                            {title}
-                          </div>
-                        }
-                      </h1>
-                    </li>
-                  )}
-                </ul>
-              </div>
+            <div className="grid-center">
+              <HomepageLinks
+                projects={homepage.projects}
+                activeProject={activeProject}
+                isPortraitAndMobile={isPortraitAndMobile}
+                setActiveProject={setActiveProject}
+              />
             </div>
           </div>
-        </>
+        </div>
       </Layout>
     </div>
   )

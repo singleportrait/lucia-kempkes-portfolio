@@ -1,0 +1,47 @@
+.homepageLinks {
+  position: relative;
+  height: calc(100vh - var(--header-height) - var(--footer-links-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.homepageLinkListItem {
+}
+
+.homepageH1 {
+  padding: 0;
+}
+
+.homepageLink {
+  display: inline-block;
+  position: relative;
+  padding: 1rem 0;
+  opacity: 0.2;
+}
+
+.homepageLink:hover {
+  text-decoration: none;
+}
+
+.activeLink {
+  opacity: 1;
+}
+
+@media screen and (max-width: 700px) {
+  .homepageLink.activeLink:after {
+    content: "View";
+    position: absolute;
+    font-size: .75rem;
+    font-family: var(--accent-font);
+    font-weight: var(--accent-font-weight);
+    background-color: var(--accent-color);
+    text-transform: none;
+    bottom: 1.35rem;
+    margin-left: .5rem;
+    padding: 2px 4px 1px;
+    -webkit-font-smoothing: auto;
+  }
+}
