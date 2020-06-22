@@ -60,8 +60,9 @@ $elementIndent: "3rem";
   }
 
   /* Contentful is putting empty paragraph tags underneath the last HRs */
+  /* It's possible this will have negative side effects */
   p:empty:last-of-type {
-    border: none;
+    display: none;
   }
 
   @media screen and (max-width: 700px) {
