@@ -32,7 +32,7 @@ export default function Index({ preview, homepage, footer }) {
     )}>
       <Layout preview={preview} footer={footer}>
         <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
+          <title>{CMS_NAME}</title>
         </Head>
         <Header />
         <div className="content">
