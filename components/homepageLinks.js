@@ -15,8 +15,8 @@ export default function HomepageLinks({projects, activeProject, isPortraitAndMob
                   styles.homepageLink,
                   (activeProject === slug || !activeProject) && styles.activeLink
                 )}
-                onMouseEnter={() => setActiveProject(slug)}
-                onMouseLeave={() => setActiveProject()}
+                onMouseEnter={() => !isPortraitAndMobile && setActiveProject(slug)}
+                onMouseLeave={() => !isPortraitAndMobile && setActiveProject()}
               >
                 {title}
               </a>

@@ -14,10 +14,18 @@ import { CMS_NAME } from '../lib/constants'
 import JSONPretty from 'react-json-pretty';
 
 export default function Index({ preview, homepage, footer }) {
+  const handleMediaQueryChange = (matches) => {
+    if (matches) {
+      setActiveProject(homepage.projects[0].fields.slug)
+    } else {
+      setActiveProject()
+    }
+  }
+
   const isPortraitAndMobile = useMediaQuery({
-    maxDeviceWidth: 700,
+    maxWidth: 700,
     orientation: 'portrait',
-  })
+  }, undefined, handleMediaQueryChange)
 
   const [activeProject, setActiveProject] = useState(
     isPortraitAndMobile ? homepage.projects[0].fields.slug : null
