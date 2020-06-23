@@ -10,7 +10,11 @@ module.exports = {
             ],
             defaultExtractor: (content) =>
               content.match(/[\w-/:]+(?<!:)/g) || [],
-            whitelist: ['h5', 'h6', 'blockquote', 'ol', '#__next'],
+            whitelist: [
+              'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+              'p', 'blockquote', 'ol',
+              'next'
+            ],
           },
         ]
       : undefined,
