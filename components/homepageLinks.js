@@ -6,7 +6,7 @@ export default function HomepageLinks({projects, activeProject, isPortraitAndMob
   return (
     <ul className={styles.homepageLinks}>
       { projects.map(({ fields: { slug, title }}, i) =>
-      <li className={styles.homepageLinkListItem} key={i}>
+      <li key={i}>
         { (!isPortraitAndMobile || activeProject === slug) &&
           <h1 className={styles.homepageH1}>
             <Link as={slug} href="[slug]">
