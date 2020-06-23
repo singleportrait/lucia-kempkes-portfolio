@@ -34,7 +34,7 @@ export default function Index({ preview, homepage, footer }) {
         <Head>
           <title>{CMS_NAME}</title>
         </Head>
-        <Header />
+        <Header lightBackground={activeProject} />
         <div className="content">
           <div className="grid">
             <div className="grid-wide-center">

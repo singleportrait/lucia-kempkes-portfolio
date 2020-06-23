@@ -85,6 +85,7 @@ export default function Page({
           previousPage={previousPage}
           nextPage={nextPage}
           parentPage={parentPageSlug}
+          lightBackground
         />
         {router.isFallback ? (
           <h1>Loading…</h1>

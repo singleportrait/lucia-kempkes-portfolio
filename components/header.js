@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 export default function Header(props) {
   return (
-    <div className={styles.header}>
+    <div className={cn(styles.header, props.lightBackground && styles.lightBackground)}>
       <div className="grid">
         <div className="grid-left">
           { props.parentPage &&
