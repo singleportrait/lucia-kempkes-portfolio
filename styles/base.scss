@@ -50,10 +50,11 @@ p, small {
   line-height: 1.4;
 }
 
-h1, h2 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--header-font);
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased;
+  line-height: 1.2;
 }
 
 h1 {
@@ -66,18 +67,29 @@ h2 {
 
 /* TODO: Font sizes/styles for other headers */
 h3 {
+  font-size: 1.5rem;
 }
 
 h4 {
+  font-size: 1.3rem;
 }
 
 h5 {
+  font-size: 1.1rem;
 }
 
 h6 {
 }
 
 p {
+}
+
+em, i {
+  font-style: italic;
+}
+
+strong, b {
+  font-weight: bold;
 }
 
 @media screen and (max-width: 700px) {
@@ -92,12 +104,9 @@ small {
   font-size: .9rem;
 }
 
-img {
+img, video {
   max-width: 100%;
   display: block;
-}
-
-video {
 }
 
 .content {

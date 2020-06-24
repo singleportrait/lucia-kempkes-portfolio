@@ -75,8 +75,8 @@ $elementIndent: "3rem";
 $column_width: "((100vw - (11 * .5rem)) / 12)";
 $grid_gap: ".5rem";
 
-.imageCaption {
-  padding-top: .5rem;
+.caption {
+  padding-top: .25rem;
   display: inline-block;
 
   + hr {
@@ -88,4 +88,10 @@ $grid_gap: ".5rem";
     margin-left: calc((#{$column_width} * 2) + #{$grid_gap} + .5rem);
     margin-right: calc((#{$column_width} * 2) + #{$grid_gap} + .5rem);
   }
+}
+
+.captionTitle {
+  font-family: var(--body-font);
+  font-style: italic;
+  font-size: .88rem;
 }

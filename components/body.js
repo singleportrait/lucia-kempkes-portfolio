@@ -9,9 +9,6 @@ export default function Body(props) {
 
   const options = {
     renderNode: {
-      [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 className="text-4xl lg:text-6xl leading-tight">{children}</h1>
-      ),
       [BLOCKS.EMBEDDED_ENTRY]: (node) => (
         <>
           <div style={{border: "1px solid #000", padding: "1rem"}}>
@@ -20,17 +17,31 @@ export default function Body(props) {
           </div>
         </>
       ),
-      [BLOCKS.EMBEDDED_ASSET]: (node) => (
-        // JSON.stringify(node)
+      [BLOCKS.EMBEDDED_ASSET]: ({data: {target: { fields }}}) => (
         <>
-          {node.data.target.fields &&
-            <>
-              <img src={node.data.target.fields.file.url} />
-              <small className={styles.imageCaption}>
-                {node.data.target.fields.title}, {node.data.target.fields.description}
-              </small>
-            </>
+          {/* { JSON.stringify(fields) } */}
+          { fields?.file.contentType.includes("image") &&
+            <img src={fields.file.url} />
           }
+          { fields?.file.contentType.includes("video") &&
+            <video
+              controls
+              muted
+              autoPlay
+              preload="true"
+              playsInline
+            >
+              <source
+                src={fields.file.url}
+                type={fields.contentType}
+              />
+            </video>
+          }
+          <small className={styles.caption}>
+            <span className={styles.captionTitle}>{fields.title}</span>
+            {fields.description && ", "}
+            {fields.description}
+          </small>
         </>
       ),
       [INLINES.ENTRY_HYPERLINK]: (node) => (
@@ -47,12 +58,6 @@ export default function Body(props) {
         </>
       ),
     }
-  }
-
-  function paragraphClass(node) {
-    const className = 'customClassExample';
-    //alternate logic for 'odd' | 'even'
-    return className;
   }
 
   return (
