@@ -27,16 +27,17 @@
 .siteTitle {
   font-family: var(--accent-font);
   font-size: 1.1rem;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .navigationPrevious {
-  background-color: beige;
 }
 
 .navigationNext {
-  background-color: aqua;
 }
 
 .navigationBack {
-  background-color: aliceblue;
 }
