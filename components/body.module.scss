@@ -1,0 +1,71 @@
+$selectors: "p, h1, h2, h3, h4, h5, h6, blockquote, ul, ol";
+
+$elementIndent: "3rem";
+
+.body {
+  a {
+    text-decoration: underline;
+   }
+
+  hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid var(--neutral-color);
+    margin-top: 1rem;
+
+    & + #{$selectors} {
+      padding-top: 1rem;
+    }
+  }
+
+  > #{$selectors} {
+    border-left: 1px solid var(--neutral-color);
+    border-right: 1px solid var(--neutral-color);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #fff;
+
+    & + hr {
+      margin-bottom: 1rem;
+      margin-top: 0;
+    }
+  }
+
+  blockquote {
+    padding-left: #{$elementIndent};
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: "";
+      border-left: 6px solid var(--accent-color);
+      top: .5rem;
+      bottom: .5rem;
+      margin-left: -1.1rem;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: #{$elementIndent};
+  }
+
+  ol {
+    list-style-type: decimal;
+    padding-left: #{$elementIndent};
+  }
+
+  /* Contentful is putting empty paragraph tags underneath the last HRs */
+  /* It's possible this will have negative side effects */
+  p:empty:last-of-type {
+    display: none;
+  }
+
+  @media screen and (max-width: 700px) {
+    hr,
+    #{$selectors} {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}

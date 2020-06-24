@@ -5,77 +5,20 @@ import Head from 'next/head'
 import ErrorPage from 'next/error'
 import Header from '../components/header'
 import Layout from '../components/layout'
+import Body from '../components/body'
 import { getPage, getFooter, getHomepageProjectSlugs, getAllPagesWithSlug } from '../lib/api'
-// import { CMS_NAME } from '../lib/constants'
 
 import styles from './[slug].module.scss'
 
-import { BLOCKS, INLINES } from '@contentful/rich-text-types';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import JSONPretty from 'react-json-pretty';
 
-export default function Page({
-  page,
-  previousPage,
-  nextPage,
-  parentPageSlug,
-  footer,
-  preview
-}) {
+export default function Page({ page, previousPage, nextPage, parentPageSlug, footer, preview }) {
   const router = useRouter();
 
   if (!router.isFallback && !page) {
     return (
       <ErrorPage statusCode={404} />
     )
-  }
-
-  const options = {
-    renderNode: {
-      [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 className="text-4xl lg:text-6xl leading-tight">{children}</h1>
-      ),
-      [BLOCKS.EMBEDDED_ENTRY]: (node) => (
-        <>
-          <div style={{border: "1px solid #000", padding: "1rem"}}>
-            <div>(Embedded Entry)</div>
-            {node.data.target.fields && documentToReactComponents(node.data.target.fields.text, options)}
-          </div>
-        </>
-      ),
-      [BLOCKS.EMBEDDED_ASSET]: (node) => (
-        // JSON.stringify(node)
-        <>
-          {node.data.target.fields &&
-            <>
-              <img src={node.data.target.fields.file.url} />
-              <small>
-                {node.data.target.fields.title}, {node.data.target.fields.description}
-              </small>
-            </>
-          }
-        </>
-      ),
-      [INLINES.ENTRY_HYPERLINK]: (node) => (
-        <>
-          <Link as={node.data.target.fields.slug} href="[slug]">
-            <a>{node.content[0].value}</a>
-          </Link>
-          {/* <JSONPretty data={node} /> */}
-        </>
-      ),
-      [INLINES.HYPERLINK]: (node) => (
-        <>
-          <a href={node.data.uri} target="_blank">{node.content[0].value}</a>
-        </>
-      ),
-    }
-  }
-
-  function paragraphClass(node) {
-    const className = 'customClassExample';
-    //alternate logic for 'odd' | 'even'
-    return className;
   }
 
   return (
@@ -105,8 +48,9 @@ export default function Page({
 
               <div className="grid">
                 <div className="grid-widescreen-left"></div>
-                <div className={cn("grid-widescreen-center", styles.bodyContent)}>
-                  { page.body && documentToReactComponents(page.body, options) }
+                <div className="grid-widescreen-center">
+                  <Body body={page.body} />
+
                   {/* <JSONPretty data={carouselSlugs} /> */}
                   {/* <div style={{backgroundColor: "beige"}}> */}
                   {/*   <JSONPretty data={page} /> */}
