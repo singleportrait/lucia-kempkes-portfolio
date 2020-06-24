@@ -26,7 +26,7 @@ export default function Body(props) {
           {node.data.target.fields &&
             <>
               <img src={node.data.target.fields.file.url} />
-              <small>
+              <small className={styles.imageCaption}>
                 {node.data.target.fields.title}, {node.data.target.fields.description}
               </small>
             </>

@@ -3,6 +3,8 @@ $selectors: "p, h1, h2, h3, h4, h5, h6, blockquote, ul, ol";
 $elementIndent: "3rem";
 
 .body {
+  margin-bottom: 1rem;
+
   a {
     text-decoration: underline;
    }
@@ -67,5 +69,23 @@ $elementIndent: "3rem";
       margin-left: 1rem;
       margin-right: 1rem;
     }
+  }
+}
+
+$column_width: "((100vw - (11 * .5rem)) / 12)";
+$grid_gap: ".5rem";
+
+.imageCaption {
+  padding-top: .5rem;
+  display: inline-block;
+
+  + hr {
+    margin-top: 0;
+  }
+
+  // Manually calculating grid widths to properly align on mobile...
+  @media screen and (max-width: 700px) {
+    margin-left: calc((#{$column_width} * 2) + #{$grid_gap} + .5rem);
+    margin-right: calc((#{$column_width} * 2) + #{$grid_gap} + .5rem);
   }
 }

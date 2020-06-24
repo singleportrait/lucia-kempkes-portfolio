@@ -89,10 +89,12 @@ p {
 small {
   font-family: var(--header-font);
   color: var(--neutral-color);
+  font-size: .9rem;
 }
 
 img {
   max-width: 100%;
+  display: block;
 }
 
 video {
