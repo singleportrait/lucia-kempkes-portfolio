@@ -101,6 +101,7 @@ video {
 .content {
   position: relative;
   z-index: 1; /* For the background grid on mobile */
+  // Fallback without window.innerHeight
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
@@ -136,6 +137,7 @@ video {
 .grid--background {
   display: grid;
   position: absolute;
+  // Fallback without window.innerHeight
   height: 100vh;
   z-index: 0;
 }

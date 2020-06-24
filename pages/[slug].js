@@ -12,7 +12,7 @@ import styles from './[slug].module.scss'
 
 import JSONPretty from 'react-json-pretty';
 
-export default function Page({ page, previousPage, nextPage, parentPageSlug, footer, preview }) {
+export default function Page({ page, previousPage, nextPage, parentPageSlug, footer, preview, innerHeight }) {
   const router = useRouter();
 
   if (!router.isFallback && !page) {
@@ -22,7 +22,7 @@ export default function Page({ page, previousPage, nextPage, parentPageSlug, foo
   }
 
   return (
-    <Layout preview={preview} footer={footer}>
+    <Layout preview={preview} footer={footer} innerHeight={innerHeight}>
       <>
         <Header
           previousPage={previousPage}
@@ -37,7 +37,12 @@ export default function Page({ page, previousPage, nextPage, parentPageSlug, foo
             <Head>
               <title>{page.title} - Lucia Kempkes</title>
             </Head>
-            <div className="content">
+            <div
+              className="content"
+              style={{
+                minHeight: `calc(${innerHeight} - var(--header-height) - var(--footer-height))`
+              }}
+            >
               <div className="grid">
                 <div className="grid-left"></div>
                 <div className="grid-center">

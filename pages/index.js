@@ -13,7 +13,7 @@ import { CMS_NAME } from '../lib/constants'
 
 import JSONPretty from 'react-json-pretty';
 
-export default function Index({ preview, homepage, footer }) {
+export default function Index({ preview, homepage, footer, innerHeight }) {
   const handleMediaQueryChange = (matches) => {
     if (matches) {
       setActiveProject(homepage.projects[0].fields.slug)
@@ -31,6 +31,10 @@ export default function Index({ preview, homepage, footer }) {
     isPortraitAndMobile ? homepage.projects[0].fields.slug : null
   );
 
+  const imagesContainerHeight = {
+    height: `calc(${innerHeight} - var(--header-height) - var(--footer-links-height) - 2rem)`
+  }
+
   return (
     <div className={cn(
       "index",
@@ -38,7 +42,7 @@ export default function Index({ preview, homepage, footer }) {
       styles.index,
       !activeProject && styles.noActiveProject
     )}>
-      <Layout preview={preview} footer={footer}>
+      <Layout preview={preview} footer={footer} innerHeight={innerHeight}>
         <Head>
           <title>{CMS_NAME}</title>
         </Head>
@@ -50,6 +54,7 @@ export default function Index({ preview, homepage, footer }) {
                 projects={homepage.projects}
                 activeProject={activeProject}
                 verticalImages={isPortraitAndMobile}
+                imagesContainerHeight={imagesContainerHeight}
               />
             </div>
 
@@ -57,8 +62,9 @@ export default function Index({ preview, homepage, footer }) {
               <HomepageLinks
                 projects={homepage.projects}
                 activeProject={activeProject}
-                isPortraitAndMobile={isPortraitAndMobile}
                 setActiveProject={setActiveProject}
+                isPortraitAndMobile={isPortraitAndMobile}
+                imagesContainerHeight={imagesContainerHeight}
               />
             </div>
           </div>

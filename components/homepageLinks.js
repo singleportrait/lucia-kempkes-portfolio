@@ -2,9 +2,12 @@ import styles from './homepageLinks.module.scss'
 import cn from 'classnames';
 import Link from 'next/link'
 
-export default function HomepageLinks({projects, activeProject, isPortraitAndMobile, setActiveProject}) {
+export default function HomepageLinks({projects, activeProject, setActiveProject, isPortraitAndMobile, imagesContainerHeight}) {
   return (
-    <ul className={styles.homepageLinks}>
+    <ul
+      className={styles.homepageLinks}
+      style={imagesContainerHeight}
+    >
       { projects.map(({ fields: { slug, title }}, i) =>
       <li key={i}>
         { (!isPortraitAndMobile || activeProject === slug) &&
@@ -32,4 +35,8 @@ export default function HomepageLinks({projects, activeProject, isPortraitAndMob
       )}
     </ul>
   )
+}
+
+HomepageLinks.defaultProps = {
+  imagesContainerHeight: {}
 }
