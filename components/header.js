@@ -33,7 +33,7 @@ export default function Header(props) {
         </div>
         <div className={cn("grid-center", styles.siteTitle)}>
           <Link href="/">
-            <a class={styles.siteTitle}>Lucia Kempkes</a>
+            <a className={styles.siteTitle}>Lucia Kempkes</a>
           </Link>
         </div>
         <div className="grid-right">
