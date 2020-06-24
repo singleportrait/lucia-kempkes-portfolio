@@ -46,7 +46,7 @@ export default function Index({ preview, homepage, footer, innerHeight }) {
         <Head>
           <title>{CMS_NAME}</title>
         </Head>
-        <Header lightBackground={isPortraitAndMobile || activeProject} />
+        <Header lightBackground={!isPortraitAndMobile && activeProject} />
         <div className="content">
           <div className="grid">
             <div className="grid-wide-center">
