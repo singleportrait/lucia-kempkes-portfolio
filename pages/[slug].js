@@ -15,6 +15,8 @@ import JSONPretty from 'react-json-pretty';
 export default function Page({ page, previousPage, nextPage, parentPageSlug, footer, preview, innerHeight }) {
   const router = useRouter();
 
+  const today = new Date();
+
   if (!router.isFallback && !page) {
     return (
       <ErrorPage statusCode={404} />
@@ -69,20 +71,12 @@ export default function Page({ page, previousPage, nextPage, parentPageSlug, foo
               <div className="grid">
                 <div className="grid-left"></div>
                 <div className={cn("grid-center", styles.footerCopyright)}>
-                  &copy; 2020 Lucia Kempkes
+                  &copy; { today.getFullYear() } Lucia Kempkes
                 </div>
                 <div className="grid-right"></div>
               </div>
             </div>
 
-            { parentPageSlug &&
-              <div>
-                <Link as={parentPageSlug} href="[slug]">
-                  <a>Back</a>
-                </Link>
-                Has a parent page
-              </div>
-            }
           </>
         )}
       </>
