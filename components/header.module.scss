@@ -33,11 +33,12 @@
   }
 }
 
-.navigationPrevious {
-}
-
-.navigationNext {
-}
-
-.navigationBack {
+@media(hover: hover) and (pointer: fine) {
+  .navigationPrevious:hover,
+  .navigationNext:hover,
+  .navigationBack:hover {
+    svg g {
+      stroke: #000;
+    }
+  }
 }

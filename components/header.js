@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Link from 'next/link'
 import styles from './header.module.scss'
 import cn from 'classnames';
@@ -8,9 +7,6 @@ import RightArrow from './RightArrow.js'
 import BackArrow from './BackArrow.js'
 
 export default function Header(props) {
-  const [previousHoverColor, setPreviousHoverColor] = useState();
-  const [nextHoverColor, setNextHoverColor] = useState();
-  const [backHoverColor, setBackHoverColor] = useState();
 
   return (
     <div className={cn(styles.header, props.lightBackground && styles.lightBackground)}>
@@ -20,10 +16,8 @@ export default function Header(props) {
             <Link as={props.parentPage} href="[slug]">
               <a
                 className={cn(styles.navigation, styles.navigationBack)}
-                onMouseEnter={() => setBackHoverColor("#000")}
-                onMouseLeave={() => setBackHoverColor()}
               >
-                <BackArrow color={backHoverColor} />
+                <BackArrow />
               </a>
             </Link>
           }
@@ -31,10 +25,8 @@ export default function Header(props) {
             <Link as={props.previousPage} href="[slug]">
               <a
                 className={cn(styles.navigation, styles.navigationPrevious)}
-                onMouseEnter={() => setPreviousHoverColor("#000")}
-                onMouseLeave={() => setPreviousHoverColor()}
               >
-                <LeftArrow color={previousHoverColor} />
+                <LeftArrow />
               </a>
             </Link>
           }
@@ -49,10 +41,8 @@ export default function Header(props) {
             <Link as={props.nextPage} href="[slug]">
               <a
                 className={cn(styles.navigation, styles.navigationNext)}
-                onMouseEnter={() => setNextHoverColor("#000")}
-                onMouseLeave={() => setNextHoverColor()}
               >
-                <RightArrow color={nextHoverColor} />
+                <RightArrow />
               </a>
             </Link>
             }
