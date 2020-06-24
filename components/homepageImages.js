@@ -22,9 +22,19 @@ export default function HomepageImages(props) {
                 }
                 { verticalPreviewImage?.fields.file.contentType.includes("video") &&
                   <div
-                    className={cn(styles.homepageVerticalImage, props.activeProject === slug && styles.show)}
+                    className={cn(styles.homepageVerticalVideo, props.activeProject === slug && styles.show)}
                   >
-                    "Move preview background"
+                    <video
+                      autoPlay
+                      muted
+                      preload="true"
+                      playsInline
+                    >
+                      <source
+                        src={horizontalPreviewImage.fields.file.url}
+                        type={horizontalPreviewImage.fields.contentType}
+                      />
+                    </video>
                   </div>
                 }
               </>
@@ -38,9 +48,18 @@ export default function HomepageImages(props) {
                   />
                 }
                 { horizontalPreviewImage?.fields.file.contentType.includes("video") &&
-                  <div className={cn(styles.homepageImage, props.activeProject === slug && styles.show)}>
-                    "Movie preview file"
-                  </div>
+                  <video
+                    className={cn(styles.homepageImage, props.activeProject === slug && styles.show)}
+                    autoPlay
+                    muted
+                    preload="true"
+                    playsInline
+                  >
+                    <source
+                      src={horizontalPreviewImage.fields.file.url}
+                      type={horizontalPreviewImage.fields.contentType}
+                    />
+                  </video>
                 }
               </>
             }
