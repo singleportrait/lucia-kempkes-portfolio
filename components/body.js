@@ -54,7 +54,7 @@ export default function Body(props) {
       ),
       [INLINES.HYPERLINK]: (node) => (
         <>
-          <a href={node.data.uri} target="_blank">{node.content[0].value}</a>
+          <a href={node.data.uri} target="_blank" rel="noreferrer noopener">{node.content[0].value}</a>
         </>
       ),
     }

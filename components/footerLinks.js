@@ -9,9 +9,16 @@ export default function FooterLinks(props) {
         <ul className={cn("grid-center", styles.footerLinks)}>
           { props.footer && props.footer.links.map(({ fields: { text, url } }, i) =>
             <li key={i}>
-              <Link as={url} href="[slug]">
-                <a href={url}>{text}</a>
-              </Link>
+              { url.includes("http") &&
+                <a href={url} target="_blank" rel="noreferrer noopener">
+                  {text}
+                </a>
+              }
+              { !url.includes("http") &&
+                <Link as={url} href="[slug]">
+                  <a href={url}>{text}</a>
+                </Link>
+              }
             </li>
           )}
         </ul>
