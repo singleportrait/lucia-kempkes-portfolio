@@ -59,6 +59,10 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, .h1 {
   font-size: 2.5rem;
+
+  @media screen and (max-width: 700px) {
+    font-size: 1.5rem;
+  }
 }
 
 h2 {
@@ -90,12 +94,6 @@ em, i {
 
 strong, b {
   font-weight: bold;
-}
-
-@media screen and (max-width: 700px) {
-  h1 {
-    font-size: 1.5rem;
-  }
 }
 
 small {
