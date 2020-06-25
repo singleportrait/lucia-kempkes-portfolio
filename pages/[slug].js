@@ -33,7 +33,13 @@ export default function Page({ page, previousPageSlug, nextPageSlug, parentPageS
           lightBackground
         />
         {router.isFallback ? (
-          <h1>Loading…</h1>
+          <div className="grid">
+            <div className="grid-left"></div>
+            <div className="grid-center">
+              <h1 className={styles.bodyHeader}>Loading…</h1>
+            </div>
+            <div className="grid-right"></div>
+          </div>
         ) : (
           <>
             <Head>
