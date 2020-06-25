@@ -16,7 +16,7 @@ export default function HomepageImages(props) {
                   <div
                     className={cn(styles.homepageVerticalImage, props.activeProject === slug && styles.show)}
                     style={{
-                      backgroundImage: `url(${verticalPreviewImage.fields.file.url})`,
+                      backgroundImage: `url(${verticalPreviewImage.fields.file.url}?fl=progressive)`,
                     }}
                   />
                 }
@@ -43,7 +43,7 @@ export default function HomepageImages(props) {
               <>
                 { horizontalPreviewImage?.fields.file.contentType.includes("image") &&
                   <img
-                    src={horizontalPreviewImage.fields.file.url}
+                    src={`${horizontalPreviewImage.fields.file.url}?fl=progressive&w=1500`}
                     className={cn(styles.homepageImage, props.activeProject === slug && styles.show)}
                   />
                 }

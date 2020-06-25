@@ -21,7 +21,7 @@ export default function Body(props) {
         <>
           {/* { JSON.stringify(fields) } */}
           { fields?.file.contentType.includes("image") &&
-            <img src={fields.file.url} />
+            <img src={`${fields.file.url}?fl=progressive`} />
           }
           { fields?.file.contentType.includes("video") &&
             <video
