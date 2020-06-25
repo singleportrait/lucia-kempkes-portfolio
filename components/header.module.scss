@@ -26,7 +26,11 @@
 
 .siteTitle {
   font-family: var(--accent-font);
+  font-weight: var(--accent-font-weight);
+  text-transform: none;
   font-size: 1.1rem;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
 
   &:hover {
     text-decoration: none;

@@ -32,9 +32,14 @@ export default function Header(props) {
           }
         </div>
         <div className={cn("grid-center", styles.siteTitle)}>
-          <Link href="/">
-            <a className={styles.siteTitle}>Lucia Kempkes</a>
-          </Link>
+          { props.homepage &&
+            <h1 className={styles.siteTitle}>Lucia Kempkes</h1>
+          }
+          { !props.homepage &&
+            <Link href="/">
+              <a className={styles.siteTitle}>Lucia Kempkes</a>
+            </Link>
+          }
         </div>
         <div className="grid-right">
           { !props.parentPage && props.nextPage &&

@@ -11,7 +11,7 @@ export default function HomepageLinks({projects, activeProject, setActiveProject
       { projects.map(({ fields: { slug, title }}, i) =>
       <li key={i}>
         { (!isPortraitAndMobile || activeProject === slug) &&
-          <h1 className={styles.homepageH1}>
+          <h2 className={cn(styles.homepageH1, "h1")}>
             <Link as={slug} href="[slug]">
               <a
                 className={cn(
@@ -24,12 +24,12 @@ export default function HomepageLinks({projects, activeProject, setActiveProject
                 {title}
               </a>
             </Link>
-          </h1>
+          </h2>
         }
         { isPortraitAndMobile && activeProject !== slug &&
-          <h1 className={styles.homepageH1}>
+          <h2 className={cn(styles.homepageH1, "h1")}>
             <span className={styles.homepageLink} onClick={() => setActiveProject(slug)}>{title}</span>
-          </h1>
+          </h2>
         }
       </li>
       )}
