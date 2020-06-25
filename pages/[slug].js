@@ -121,6 +121,6 @@ export async function getStaticPaths() {
 
   return {
     paths: allPages?.map(({ slug }) => `/${slug}`) ?? [],
-    fallback: true,
+    fallback: false,
   }
 }
