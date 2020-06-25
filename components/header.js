@@ -12,19 +12,21 @@ export default function Header(props) {
     <div className={cn(styles.header, props.lightBackground && styles.lightBackground)}>
       <div className="grid">
         <div className="grid-left">
-          { props.parentPage &&
-            <Link as={props.parentPage} href="[slug]">
+          { props.parentPageSlug &&
+            <Link as={props.parentPageSlug} href="[slug]">
               <a
                 className={cn(styles.navigation, styles.navigationBack)}
+                href={props.parentPageSlug}
               >
                 <BackArrow />
               </a>
             </Link>
           }
-          { !props.parentPage && props.previousPage &&
-            <Link as={props.previousPage} href="[slug]">
+          { !props.parentPageSlug && props.previousPageSlug &&
+            <Link as={props.previousPageSlug} href="[slug]">
               <a
                 className={cn(styles.navigation, styles.navigationPrevious)}
+                href={props.previousPageSlug}
               >
                 <LeftArrow />
               </a>
@@ -37,15 +39,16 @@ export default function Header(props) {
           }
           { !props.homepage &&
             <Link href="/">
-              <a className={styles.siteTitle}>Lucia Kempkes</a>
+              <a href="/" className={styles.siteTitle}>Lucia Kempkes</a>
             </Link>
           }
         </div>
         <div className="grid-right">
-          { !props.parentPage && props.nextPage &&
-            <Link as={props.nextPage} href="[slug]">
+          { !props.parentPageSlug && props.nextPageSlug &&
+            <Link as={props.nextPageSlug} href="[slug]">
               <a
                 className={cn(styles.navigation, styles.navigationNext)}
+                href={props.parentPageSlug}
               >
                 <RightArrow />
               </a>
@@ -58,5 +61,5 @@ export default function Header(props) {
 }
 
 Header.defaultProps = {
-  parentPage: null,
+  parentPageSlug: null,
 };

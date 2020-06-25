@@ -12,7 +12,7 @@ import styles from './[slug].module.scss'
 
 import JSONPretty from 'react-json-pretty';
 
-export default function Page({ page, previousPage, nextPage, parentPageSlug, footer, preview, innerHeight }) {
+export default function Page({ page, previousPageSlug, nextPageSlug, parentPageSlug, footer, preview, innerHeight }) {
   const router = useRouter();
 
   const today = new Date();
@@ -27,9 +27,9 @@ export default function Page({ page, previousPage, nextPage, parentPageSlug, foo
     <Layout preview={preview} footer={footer} innerHeight={innerHeight}>
       <>
         <Header
-          previousPage={previousPage}
-          nextPage={nextPage}
-          parentPage={parentPageSlug}
+          previousPageSlug={previousPageSlug}
+          nextPageSlug={nextPageSlug}
+          parentPageSlug={parentPageSlug}
           lightBackground
         />
         {router.isFallback ? (
@@ -91,18 +91,18 @@ export async function getStaticProps({ params, preview = false }) {
 
   const carouselSlugs = await getHomepageProjectSlugs();
   const pageIndex = carouselSlugs.indexOf(params.slug);
-  let previousPage, nextPage;
+  let previousPageSlug, nextPageSlug;
 
   if (pageIndex !== -1) {
-    previousPage = pageIndex === 0 ? carouselSlugs[carouselSlugs.length - 1] : carouselSlugs[pageIndex - 1];
-    nextPage = pageIndex === carouselSlugs.length - 1 ? carouselSlugs[0] : carouselSlugs[pageIndex + 1];
+    previousPageSlug = pageIndex === 0 ? carouselSlugs[carouselSlugs.length - 1] : carouselSlugs[pageIndex - 1];
+    nextPageSlug = pageIndex === carouselSlugs.length - 1 ? carouselSlugs[0] : carouselSlugs[pageIndex + 1];
   }
 
   return {
     props: {
       page: page ?? null,
-      previousPage: previousPage || null,
-      nextPage: nextPage || null,
+      previousPageSlug: previousPageSlug || null,
+      nextPageSlug: nextPageSlug || null,
       parentPageSlug: page.parentPageSlug || null,
       footer,
       preview,

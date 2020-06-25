@@ -47,7 +47,7 @@ export default function Body(props) {
       [INLINES.ENTRY_HYPERLINK]: (node) => (
         <>
           <Link as={node.data.target.fields.slug} href="[slug]">
-            <a>{node.content[0].value}</a>
+            <a href={node.data.target.fields.slug}>{node.content[0].value}</a>
           </Link>
           {/* <JSONPretty data={node} /> */}
         </>
