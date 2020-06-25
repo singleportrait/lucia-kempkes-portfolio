@@ -48,7 +48,7 @@ export default function Header(props) {
             <Link as={props.nextPageSlug} href="[slug]">
               <a
                 className={cn(styles.navigation, styles.navigationNext)}
-                href={props.parentPageSlug}
+                href={props.nextPageSlug}
               >
                 <RightArrow />
               </a>
