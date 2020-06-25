@@ -2,25 +2,29 @@ import Alert from '../components/alert'
 import FooterLinks from '../components/footerLinks'
 import Meta from '../components/meta'
 
-export default function Layout({ preview, footer, innerHeight, children }) {
+export default function Layout(props) {
   return (
     <>
-      <Meta />
+      <Meta
+        title={props.title}
+        shareImage={props.shareImage}
+        metaDescription={props.metaDescription}
+      />
       <div>
         <div
           className="grid grid--background"
           style={{
-            height: innerHeight || "100vh"
+            height: props.innerHeight || "100vh"
           }}
         >
           <div className="grid-left"></div>
           <div className="grid-right"></div>
         </div>
 
-        <Alert preview={preview} />
-        <main>{children}</main>
+        <Alert preview={props.preview} />
+        <main>{props.children}</main>
       </div>
-      <FooterLinks footer={footer} />
+      <FooterLinks footer={props.footer} />
     </>
   )
 }

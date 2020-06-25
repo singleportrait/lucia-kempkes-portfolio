@@ -42,10 +42,14 @@ export default function Index({ preview, homepage, footer, innerHeight }) {
       styles.index,
       !activeProject && styles.noActiveProject
     )}>
-      <Layout preview={preview} footer={footer} innerHeight={innerHeight}>
-        <Head>
-          <title>{CMS_NAME}</title>
-        </Head>
+      <Layout
+        preview={preview}
+        footer={footer}
+        innerHeight={innerHeight}
+        title={CMS_NAME}
+        shareImage={homepage.shareImage}
+        metaDescription={homepage.metaDescription}
+      >
         <Header lightBackground={!isPortraitAndMobile && activeProject} homepage />
         <div className="content">
           <div className="grid">

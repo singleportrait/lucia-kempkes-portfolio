@@ -1,9 +1,10 @@
 import Head from 'next/head'
-import { CMS_NAME, HOME_OG_IMAGE_URL } from '../lib/constants'
+import { CMS_NAME, OG_IMAGE_URL } from '../lib/constants'
 
-export default function Meta() {
+export default function Meta(props) {
   return (
     <Head>
+      <title>{props.title}</title>
       <link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -34,9 +35,9 @@ export default function Meta() {
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta
         name="description"
-        content={`${CMS_NAME} Portfolio`}
+        content={props.metaDescription || `${CMS_NAME} Portfolio`}
       />
-      <meta property="og:image" content={HOME_OG_IMAGE_URL} />
+      <meta property="og:image" content={props.shareImage?.fields.file.url || OG_IMAGE_URL} />
     </Head>
   )
 }

@@ -7,6 +7,7 @@ import Header from '../components/header'
 import Layout from '../components/layout'
 import Body from '../components/body'
 import { getPage, getFooter, getHomepageProjectSlugs, getAllPagesWithSlug } from '../lib/api'
+import { CMS_NAME } from '../lib/constants'
 
 import styles from './[slug].module.scss'
 
@@ -15,16 +16,23 @@ import JSONPretty from 'react-json-pretty';
 export default function Page({ page, previousPageSlug, nextPageSlug, parentPageSlug, footer, preview, innerHeight }) {
   const router = useRouter();
 
-  const today = new Date();
-
   if (!router.isFallback && !page) {
     return (
       <ErrorPage statusCode={404} />
     )
   }
 
+  const today = new Date();
+
   return (
-    <Layout preview={preview} footer={footer} innerHeight={innerHeight}>
+    <Layout
+      preview={preview}
+      footer={footer}
+      innerHeight={innerHeight}
+      title={`${page.title} - ${CMS_NAME}`}
+      shareImage={page.shareImage}
+      metaDescription={page.metaDescription}
+    >
       <>
         <Header
           previousPageSlug={previousPageSlug}
@@ -42,9 +50,6 @@ export default function Page({ page, previousPageSlug, nextPageSlug, parentPageS
           </div>
         ) : (
           <>
-            <Head>
-              <title>{page.title} - Lucia Kempkes</title>
-            </Head>
             <div
               className="content"
               style={{
