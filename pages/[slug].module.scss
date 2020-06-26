@@ -1,0 +1,20 @@
+.bodyHeader {
+  text-align: center;
+}
+
+.bodyFooter {
+  border-top: 1px solid var(--accent-color);
+  text-align: center;
+  height: var(--footer-height);
+
+  @media screen and (max-width: 700px) {
+    :global(.index) & {
+      border-color: var(--background-color);
+    }
+  }
+}
+
+.copyright {
+  padding-top: 1rem;
+  color: var(--accent-color);
+}

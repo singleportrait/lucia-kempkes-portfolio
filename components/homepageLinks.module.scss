@@ -1,0 +1,44 @@
+.homepageLinks {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.homepageH1 {
+  padding: 0;
+}
+
+.homepageLink {
+  display: inline-block;
+  position: relative;
+  padding: 1rem 0;
+  opacity: 0.2;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.activeLink {
+  opacity: 1;
+
+  @media screen and (max-width: 700px) {
+    &:after {
+      content: "View";
+      position: absolute;
+      font-size: .75rem;
+      font-family: var(--accent-font);
+      font-weight: var(--accent-font-weight);
+      background-color: var(--accent-color);
+      text-transform: none;
+      bottom: 1.35rem;
+      margin-left: .5rem;
+      padding: 2px 4px;
+      -webkit-font-smoothing: auto;
+    }
+  }
+}

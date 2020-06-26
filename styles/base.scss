@@ -1,0 +1,194 @@
+:root {
+  --body-font: 'Tiempos', 'Georgia', serif;
+  --header-font: 'Syne', 'Helvetica', sans-serif;
+  --accent-font: 'Tiempos Headline', 'Georgia', serif;
+  --accent-font-weight: 500;
+  --background-color: #fff;
+  --accent-color: #FFE600;
+  --neutral-color: #999;
+
+  --header-height: 4rem;
+  --footer-links-height: 3rem;
+  --footer-height: 10rem;
+}
+
+@media screen and (max-width: 700px) {
+  /* Example: you can put variables in here */
+  :root {
+    --header-height: 2.7rem;
+  }
+}
+
+html {
+  font-family: var(--body-font);
+  font-size: 15px;
+  color: #191919;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #222;
+}
+
+a:visited, a:focus {
+  color: #222;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, small {
+  padding: 1rem 0 .6rem;
+  line-height: 1.4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--header-font);
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.2;
+}
+
+h1, .h1 {
+  font-size: 2.5rem;
+
+  @media screen and (max-width: 700px) {
+    font-size: 1.5rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+h6 {
+}
+
+p {
+}
+
+em, i {
+  font-style: italic;
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+small {
+  font-family: var(--header-font);
+  color: var(--neutral-color);
+  font-size: .9rem;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* For the background grid lines on mobile */
+  // Fallback without window.innerHeight
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 1rem;
+  width: 944px;
+  max-width: 100%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.grid-left, .grid-widescreen-left {
+  grid-column: 1 / span 2;
+  border-right: 1px solid var(--accent-color);
+}
+
+.grid-center, .grid-widescreen-center {
+  grid-column: 3 / span 8;
+}
+
+.grid-right, .grid-widescreen-right {
+  grid-column: 11 / span 2;
+  border-left: 1px solid var(--accent-color);
+}
+
+.grid-wide-center {
+  grid-column: 2 / span 10;
+  position: relative;
+}
+
+.grid--background {
+  display: grid;
+  position: absolute;
+  // Fallback without window.innerHeight
+  height: 100vh;
+  z-index: 0;
+
+  @media screen and (min-width: 944px) {
+    left: 50%;
+    margin-left: -472px;
+  }
+}
+
+$column_width: "((100vw - (11 * .5rem)) / 12)";
+$grid_gap: ".5rem";
+$two_column_width: "calc((#{$column_width} * 2) + #{$grid_gap} - 1px)";
+
+@media screen and (max-width: 700px) {
+  .grid {
+    max-width: 100%;
+    grid-gap: .5rem;
+  }
+
+  .grid-widescreen-center {
+    grid-column: 1 / span 12;
+    position: relative;
+
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      height: 100%;
+      top: 0;
+      z-index: -1;
+    }
+
+    &:before {
+      left: #{$two_column_width};
+      border-left: 1px solid var(--accent-color);
+    }
+
+    &:after {
+      right: #{$two_column_width};
+      border-right: 1px solid var(--accent-color);
+    }
+  }
+
+  .grid-widescreen-left, .grid-widescreen-right {
+    display: none;
+  }
+}

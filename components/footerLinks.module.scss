@@ -1,0 +1,33 @@
+.footerLinksContainer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: space-between;
+  height: var(--footer-links-height);
+  width: 100%;
+  align-items: center;
+  text-align: center;
+
+  a {
+    padding: .5rem;
+    font-family: var(--accent-font);
+    font-weight: var(--accent-font-weight);
+
+    @media screen and (max-width: 700px) {
+      font-size: 13px;
+    }
+  }
+
+  li:first-child a {
+    padding-left: 0;
+  }
+
+  li:last-child a {
+    padding-right: 0;
+  }
+}

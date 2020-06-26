@@ -1,6 +1,5 @@
 module.exports = {
   plugins: [
-    'tailwindcss',
     process.env.NODE_ENV === 'production'
       ? [
           '@fullhuman/postcss-purgecss',
@@ -11,6 +10,12 @@ module.exports = {
             ],
             defaultExtractor: (content) =>
               content.match(/[\w-/:]+(?<!:)/g) || [],
+            whitelist: [
+              'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+              'hr',
+              'p', 'blockquote', 'ol',
+              '__next'
+            ],
           },
         ]
       : undefined,

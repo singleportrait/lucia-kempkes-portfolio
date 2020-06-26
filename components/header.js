@@ -1,12 +1,66 @@
 import Link from 'next/link'
+import cn from 'classnames';
 
-export default function Header() {
+import LeftArrow from './LeftArrow.js'
+import RightArrow from './RightArrow.js'
+import BackArrow from './BackArrow.js'
+
+import styles from './header.module.scss'
+
+export default function Header(props) {
+
   return (
-    <h2 className="text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8">
-      <Link href="/">
-        <a className="hover:underline">Blog</a>
-      </Link>
-      .
-    </h2>
+    <div className={cn(styles.header, props.lightBackground && styles.lightBackground)}>
+      <div className="grid">
+        <div className="grid-left">
+          { props.parentPageSlug &&
+            <Link as={props.parentPageSlug} href="[slug]">
+              <a
+                className={cn(styles.navigation, styles.navigationBack)}
+                href={props.parentPageSlug}
+              >
+                <BackArrow />
+              </a>
+            </Link>
+          }
+          { !props.parentPageSlug && props.previousPageSlug &&
+            <Link as={props.previousPageSlug} href="[slug]">
+              <a
+                className={cn(styles.navigation, styles.navigationPrevious)}
+                href={props.previousPageSlug}
+              >
+                <LeftArrow />
+              </a>
+            </Link>
+          }
+        </div>
+        <div className={cn("grid-center", styles.siteTitle)}>
+          { props.homepage &&
+            <h1 className={styles.siteTitle}>Lucia Kempkes</h1>
+          }
+          { !props.homepage &&
+            <Link href="/">
+              <a href="/" className={styles.siteTitle}>Lucia Kempkes</a>
+            </Link>
+          }
+        </div>
+        <div className="grid-right">
+          { !props.parentPageSlug && props.nextPageSlug &&
+            <Link as={props.nextPageSlug} href="[slug]">
+              <a
+                className={cn(styles.navigation, styles.navigationNext)}
+                href={props.nextPageSlug}
+              >
+                <RightArrow />
+              </a>
+            </Link>
+          }
+        </div>
+      </div>
+    </div>
   )
 }
+
+Header.defaultProps = {
+  parentPageSlug: null,
+};
