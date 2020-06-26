@@ -69,7 +69,6 @@ h2 {
   font-size: 2rem;
 }
 
-/* TODO: Font sizes/styles for other headers */
 h3 {
   font-size: 1.5rem;
 }
@@ -109,7 +108,7 @@ img, video {
 
 .content {
   position: relative;
-  z-index: 1; /* For the background grid on mobile */
+  z-index: 1; /* For the background grid lines on mobile */
   // Fallback without window.innerHeight
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
 }
@@ -149,16 +148,16 @@ img, video {
   // Fallback without window.innerHeight
   height: 100vh;
   z-index: 0;
-}
 
-@media screen and (min-width: 944px) {
-  .grid--background {
+  @media screen and (min-width: 944px) {
     left: 50%;
     margin-left: -472px;
   }
 }
 
-$twoColumnWidth: "calc(((100vw - 5.5rem) / 12 * 2) + .5rem - 1px)";
+$column_width: "((100vw - (11 * .5rem)) / 12)";
+$grid_gap: ".5rem";
+$two_column_width: "calc((#{$column_width} * 2) + #{$grid_gap} - 1px)";
 
 @media screen and (max-width: 700px) {
   .grid {
@@ -179,12 +178,12 @@ $twoColumnWidth: "calc(((100vw - 5.5rem) / 12 * 2) + .5rem - 1px)";
     }
 
     &:before {
-      left: #{$twoColumnWidth};
+      left: #{$two_column_width};
       border-left: 1px solid var(--accent-color);
     }
 
     &:after {
-      right: #{$twoColumnWidth};
+      right: #{$two_column_width};
       border-right: 1px solid var(--accent-color);
     }
   }

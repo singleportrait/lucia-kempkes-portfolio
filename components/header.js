@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import styles from './header.module.scss'
 import cn from 'classnames';
 
 import LeftArrow from './LeftArrow.js'
 import RightArrow from './RightArrow.js'
 import BackArrow from './BackArrow.js'
+
+import styles from './header.module.scss'
 
 export default function Header(props) {
 
@@ -53,7 +54,7 @@ export default function Header(props) {
                 <RightArrow />
               </a>
             </Link>
-            }
+          }
         </div>
       </div>
     </div>

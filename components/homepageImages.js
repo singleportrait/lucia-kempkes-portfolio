@@ -1,5 +1,6 @@
-import styles from './homepageImages.module.scss'
 import cn from 'classnames'
+
+import styles from './homepageImages.module.scss'
 
 export default function HomepageImages(props) {
   return (

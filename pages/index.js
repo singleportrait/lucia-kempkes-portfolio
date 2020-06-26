@@ -1,17 +1,17 @@
 import { useState } from 'react'
+import Link from 'next/link'
+import Head from 'next/head'
 import cn from 'classnames';
 import { useMediaQuery } from 'react-responsive'
-import Link from 'next/link'
-import styles from './index.module.scss'
+
 import Header from '../components/header'
 import Layout from '../components/layout'
 import HomepageImages from '../components/homepageImages'
 import HomepageLinks from '../components/homepageLinks'
 import { getHomepage, getFooter } from '../lib/api'
-import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
 
-import JSONPretty from 'react-json-pretty';
+import styles from './index.module.scss'
 
 export default function Index({ preview, homepage, footer, innerHeight }) {
   const handleMediaQueryChange = (matches) => {
@@ -38,7 +38,6 @@ export default function Index({ preview, homepage, footer, innerHeight }) {
   return (
     <div className={cn(
       "index",
-      !activeProject && "noActiveProject",
       styles.index,
       !activeProject && styles.noActiveProject
     )}>

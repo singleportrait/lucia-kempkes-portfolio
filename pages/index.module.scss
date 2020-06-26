@@ -1,28 +1,29 @@
 .index {
-  /* Forcing page to have a scroll bar keeps page in same position */
+  /* Forcing page to have a scroll bar keeps page in same position when switching pages */
   height: calc(100% + 1px);
-}
 
-.index.noActiveProject {
-  background-color: var(--accent-color);
+  &.noActiveProject {
+    background-color: var(--accent-color);
 
-  :global(.grid-left),
-  :global(.grid-widescreen-left),
-  :global(.grid-right),
-  :global(.grid-widescreen-right) {
-    border-color: var(--background-color);
+    :global(.grid-left),
+    :global(.grid-widescreen-left),
+    :global(.grid-right),
+    :global(.grid-widescreen-right) {
+      border-color: var(--background-color);
+    }
   }
 }
+
 
 @media screen and (max-width: 700px) {
   .index {
     background-color: var(--accent-color);
-  }
 
-  .index :global(.grid-left),
-  .index :global(.grid-widescreen-left),
-  .index :global(.grid-right),
-  .index :global(.grid-widescreen-right) {
-    border-color: var(--background-color);
+    & :global(.grid-left),
+    & :global(.grid-widescreen-left),
+    & :global(.grid-right),
+    & :global(.grid-widescreen-right) {
+      border-color: var(--background-color);
+    }
   }
 }

@@ -1,5 +1,6 @@
-import styles from './alert.module.css'
 import cn from 'classnames'
+
+import styles from './alert.module.css'
 
 export default function Alert({ preview }) {
   return (

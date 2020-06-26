@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
-import cn from 'classnames';
 import Link from 'next/link'
 import Head from 'next/head'
 import ErrorPage from 'next/error'
+import cn from 'classnames';
+
 import Header from '../components/header'
 import Layout from '../components/layout'
 import Body from '../components/body'
@@ -10,8 +11,6 @@ import { getPage, getFooter, getHomepageProjectSlugs, getAllPagesWithSlug } from
 import { CMS_NAME } from '../lib/constants'
 
 import styles from './[slug].module.scss'
-
-import JSONPretty from 'react-json-pretty';
 
 export default function Page({ page, previousPageSlug, nextPageSlug, parentPageSlug, footer, preview, innerHeight }) {
   const router = useRouter();
@@ -30,8 +29,8 @@ export default function Page({ page, previousPageSlug, nextPageSlug, parentPageS
       footer={footer}
       innerHeight={innerHeight}
       title={`${page.title} - ${CMS_NAME}`}
-      shareImage={page.shareImage}
-      metaDescription={page.metaDescription}
+      shareImage={page.shareImage ?? null}
+      metaDescription={page.metaDescription ?? null}
     >
       <>
         <Header
@@ -68,20 +67,15 @@ export default function Page({ page, previousPageSlug, nextPageSlug, parentPageS
                 <div className="grid-widescreen-left"></div>
                 <div className="grid-widescreen-center">
                   <Body body={page.body} />
-
-                  {/* <JSONPretty data={carouselSlugs} /> */}
-                  {/* <div style={{backgroundColor: "beige"}}> */}
-                  {/*   <JSONPretty data={page} /> */}
-                  {/* </div> */}
                 </div>
                 <div className="grid-widescreen-right"></div>
               </div>
             </div>
 
-            <div className={styles.footer}>
+            <div className={styles.bodyFooter}>
               <div className="grid">
                 <div className="grid-left"></div>
-                <div className={cn("grid-center", styles.footerCopyright)}>
+                <div className={cn("grid-center", styles.copyright)}>
                   &copy; { today.getFullYear() } Lucia Kempkes
                 </div>
                 <div className="grid-right"></div>

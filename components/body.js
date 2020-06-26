@@ -1,9 +1,8 @@
 import Link from 'next/link'
-
-import styles from './body.module.scss'
-
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+
+import styles from './body.module.scss'
 
 export default function Body(props) {
 
@@ -12,14 +11,12 @@ export default function Body(props) {
       [BLOCKS.EMBEDDED_ENTRY]: (node) => (
         <>
           <div style={{border: "1px solid #000", padding: "1rem"}}>
-            <div>(Embedded Entry)</div>
             {node.data.target.fields && documentToReactComponents(node.data.target.fields.text, options)}
           </div>
         </>
       ),
       [BLOCKS.EMBEDDED_ASSET]: ({data: {target: { fields }}}) => (
         <>
-          {/* { JSON.stringify(fields) } */}
           { fields?.file.contentType.includes("image") &&
             <img src={`${fields.file.url}?fl=progressive`} />
           }
@@ -45,17 +42,12 @@ export default function Body(props) {
         </>
       ),
       [INLINES.ENTRY_HYPERLINK]: (node) => (
-        <>
-          <Link as={node.data.target.fields.slug} href="[slug]">
-            <a href={node.data.target.fields.slug}>{node.content[0].value}</a>
-          </Link>
-          {/* <JSONPretty data={node} /> */}
-        </>
+        <Link as={node.data.target.fields.slug} href="[slug]">
+          <a href={node.data.target.fields.slug}>{node.content[0].value}</a>
+        </Link>
       ),
       [INLINES.HYPERLINK]: (node) => (
-        <>
-          <a href={node.data.uri} target="_blank" rel="noreferrer noopener">{node.content[0].value}</a>
-        </>
+        <a href={node.data.uri} target="_blank" rel="noreferrer noopener">{node.content[0].value}</a>
       ),
     }
   }
