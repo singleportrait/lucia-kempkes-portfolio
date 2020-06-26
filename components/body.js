@@ -9,11 +9,9 @@ export default function Body(props) {
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ENTRY]: (node) => (
-        <>
-          <div style={{border: "1px solid #000", padding: "1rem"}}>
-            {node.data.target.fields && documentToReactComponents(node.data.target.fields.text, options)}
-          </div>
-        </>
+        <div style={{border: "1px solid #000", padding: "1rem"}}>
+          {node.data.target.fields && documentToReactComponents(node.data.target.fields.text, options)}
+        </div>
       ),
       [BLOCKS.EMBEDDED_ASSET]: ({data: {target: { fields }}}) => (
         <>
