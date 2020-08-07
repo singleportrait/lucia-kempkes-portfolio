@@ -5,12 +5,11 @@ import Head from 'next/head'
 import cn from 'classnames';
 import { useMediaQuery } from 'react-responsive'
 
-import { motion, AnimatePresence } from 'framer-motion';
-
 import Header from '../components/header'
 import Layout from '../components/layout'
 import HomepageImages from '../components/homepageImages'
 import HomepageLinks from '../components/homepageLinks'
+import AnimateElement from '../components/AnimateElement';
 import { getHomepage, getFooter } from '../lib/api'
 import { CMS_NAME } from '../lib/constants'
 
@@ -41,11 +40,6 @@ export default function Index({ preview, homepage, footer, innerHeight }) {
     height: `calc(${innerHeight} - var(--header-height) - var(--footer-links-height) - 2rem)`
   }
 
-  const animationVariants = {
-    pageInitial: { opacity: 0.1 },
-    pageAnimate: { opacity: 1 },
-  };
-
   return (
     <div
       className={cn(
@@ -68,42 +62,30 @@ export default function Index({ preview, homepage, footer, innerHeight }) {
         <Header lightBackground={!isPortraitAndMobile && activeProject} homepage />
         <div className="content">
           <div className="grid">
-            <AnimatePresence exitBeforeEnter>
-              <motion.div
-                className="grid-wide-center"
-                key={router.asPath}
-                initial="pageInitial"
-                animate="pageAnimate"
-                exit="pageInitial"
-                variants={animationVariants}
-              >
-                <HomepageImages
-                  projects={homepage.projects}
-                  activeProject={activeProject}
-                  verticalImages={isPortraitAndMobile}
-                  imagesContainerHeight={imagesContainerHeight}
-                />
-              </motion.div>
-            </AnimatePresence>
+            <AnimateElement
+              id={router.asPath}
+              className="grid-wide-center"
+            >
+              <HomepageImages
+                projects={homepage.projects}
+                activeProject={activeProject}
+                verticalImages={isPortraitAndMobile}
+                imagesContainerHeight={imagesContainerHeight}
+              />
+            </AnimateElement>
 
-            <AnimatePresence exitBeforeEnter>
-              <motion.div
-                className="grid-center"
-                key={router.asPath}
-                initial="pageInitial"
-                animate="pageAnimate"
-                exit="pageInitial"
-                variants={animationVariants}
-              >
-                <HomepageLinks
-                  projects={homepage.projects}
-                  activeProject={activeProject}
-                  setActiveProject={setActiveProject}
-                  isPortraitAndMobile={isPortraitAndMobile}
-                  imagesContainerHeight={imagesContainerHeight}
-                />
-              </motion.div>
-            </AnimatePresence>
+            <AnimateElement
+              id={router.asPath}
+              className="grid-center"
+            >
+              <HomepageLinks
+                projects={homepage.projects}
+                activeProject={activeProject}
+                setActiveProject={setActiveProject}
+                isPortraitAndMobile={isPortraitAndMobile}
+                imagesContainerHeight={imagesContainerHeight}
+              />
+            </AnimateElement>
           </div>
         </div>
       </Layout>

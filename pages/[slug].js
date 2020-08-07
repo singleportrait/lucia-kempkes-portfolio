@@ -4,11 +4,10 @@ import Head from 'next/head'
 import ErrorPage from 'next/error'
 import cn from 'classnames';
 
-import { motion, AnimatePresence } from 'framer-motion';
-
 import Header from '../components/header'
 import Layout from '../components/layout'
 import Body from '../components/body'
+import AnimateElement from '../components/AnimateElement';
 import { getPage, getFooter, getHomepageProjectSlugs, getAllPagesWithSlug } from '../lib/api'
 import { CMS_NAME } from '../lib/constants'
 
@@ -25,11 +24,6 @@ export default function Page({ page, previousPageSlug, nextPageSlug, parentPageS
   }
 
   const today = new Date();
-
-  const animationVariants = {
-    pageInitial: { opacity: 0.1 },
-    pageAnimate: { opacity: 1 },
-  };
 
   return (
     <Layout
@@ -65,35 +59,23 @@ export default function Page({ page, previousPageSlug, nextPageSlug, parentPageS
             >
               <div className="grid">
                 <div className="grid-left"></div>
-                <AnimatePresence exitBeforeEnter>
-                  <motion.div
-                    className="grid-center"
-                    key={router.asPath}
-                    initial="pageInitial"
-                    animate="pageAnimate"
-                    exit="pageInitial"
-                    variants={animationVariants}
-                  >
-                    <h1 className={styles.bodyHeader}>{page.title}</h1>
-                  </motion.div>
-                </AnimatePresence>
+                <AnimateElement
+                  id={router.asPath}
+                  className="grid-center"
+                >
+                  <h1 className={styles.bodyHeader}>{page.title}</h1>
+                </AnimateElement>
                 <div className="grid-right"></div>
               </div>
 
               <div className="grid">
                 <div className="grid-widescreen-left"></div>
-                <AnimatePresence exitBeforeEnter>
-                  <motion.div
-                    className="grid-widescreen-center"
-                    key={router.asPath}
-                    initial="pageInitial"
-                    animate="pageAnimate"
-                    exit="pageInitial"
-                    variants={animationVariants}
-                  >
-                    <Body body={page.body} />
-                  </motion.div>
-                </AnimatePresence>
+                <AnimateElement
+                  id={router.asPath}
+                  className="grid-widescreen-center"
+                >
+                  <Body body={page.body} />
+                </AnimateElement>
                 <div className="grid-widescreen-right"></div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { motion, AnimatePresence } from 'framer-motion';
+import AnimateElement from '../components/AnimateElement';
 
 import '../styles/reset.css'
 import '../styles/fonts.css'
@@ -16,22 +16,17 @@ function MyApp({ Component, pageProps, router }) {
   const animationVariants = {
     // This allows the underlying index and [slug] pages to only animate the elements we want,
     // not the whole page like if the initial value were `opacity: 0`
-    pageInitial: { opacity: 1 },
-    pageAnimate: { opacity: 1 },
+    initial: { opacity: 1 },
+    animate: { opacity: 1 },
   };
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <motion.div
-        key={router.asPath}
-        initial="pageInitial"
-        animate="pageAnimate"
-        exit="pageInitial"
-        variants={animationVariants}
-      >
-        <Component {...pageProps} innerHeight={innerHeight} />
-      </motion.div>
-    </AnimatePresence>
+    <AnimateElement
+      id={router.asPath}
+      variants={animationVariants}
+    >
+      <Component {...pageProps} innerHeight={innerHeight} />
+    </AnimateElement>
   )
 }
 
