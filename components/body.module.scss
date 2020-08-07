@@ -74,6 +74,17 @@ $element_indent: "3rem";
   }
 }
 
+.imageContainer {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  position: absolute;
+  max-width: 100%;
+  top: 0;
+}
+
 $column_width: "((100vw - (11 * .5rem)) / 12)";
 $grid_gap: ".5rem";
 

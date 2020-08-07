@@ -16,7 +16,14 @@ export default function Body(props) {
       [BLOCKS.EMBEDDED_ASSET]: ({data: {target: { fields }}}) => (
         <>
           { fields?.file.contentType.includes("image") &&
-            <img src={`${fields.file.url}?fl=progressive`} />
+            <div
+              className={styles.imageContainer}
+              style={{
+                paddingTop: `${fields.file.details.image.height/fields.file.details.image.width*100}%`,
+              }}
+            >
+              <img className={styles.image} src={`${fields.file.url}`} />
+            </div>
           }
           { fields?.file.contentType.includes("video") &&
             <video
