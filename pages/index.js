@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -8,12 +9,16 @@ import Header from '../components/header'
 import Layout from '../components/layout'
 import HomepageImages from '../components/homepageImages'
 import HomepageLinks from '../components/homepageLinks'
+import AnimateElement from '../components/AnimateElement';
 import { getHomepage, getFooter } from '../lib/api'
 import { CMS_NAME } from '../lib/constants'
 
 import styles from './index.module.scss'
 
 export default function Index({ preview, homepage, footer, innerHeight }) {
+
+  const router = useRouter();
+
   const handleMediaQueryChange = (matches) => {
     if (matches) {
       setActiveProject(homepage.projects[0].fields.slug)
@@ -36,11 +41,16 @@ export default function Index({ preview, homepage, footer, innerHeight }) {
   }
 
   return (
-    <div className={cn(
-      "index",
-      styles.index,
-      !activeProject && styles.noActiveProject
-    )}>
+    <div
+      className={cn(
+        "index",
+        styles.index,
+        !activeProject && styles.noActiveProject
+      )}
+      style={{
+        height: `${parseInt(innerHeight) + 1}px`
+      }}
+    >
       <Layout
         preview={preview}
         footer={footer}
@@ -52,16 +62,22 @@ export default function Index({ preview, homepage, footer, innerHeight }) {
         <Header lightBackground={!isPortraitAndMobile && activeProject} homepage />
         <div className="content">
           <div className="grid">
-            <div className="grid-wide-center">
+            <AnimateElement
+              id={router.asPath}
+              className="grid-wide-center"
+            >
               <HomepageImages
                 projects={homepage.projects}
                 activeProject={activeProject}
                 verticalImages={isPortraitAndMobile}
                 imagesContainerHeight={imagesContainerHeight}
               />
-            </div>
+            </AnimateElement>
 
-            <div className="grid-center">
+            <AnimateElement
+              id={router.asPath}
+              className="grid-center"
+            >
               <HomepageLinks
                 projects={homepage.projects}
                 activeProject={activeProject}
@@ -69,7 +85,7 @@ export default function Index({ preview, homepage, footer, innerHeight }) {
                 isPortraitAndMobile={isPortraitAndMobile}
                 imagesContainerHeight={imagesContainerHeight}
               />
-            </div>
+            </AnimateElement>
           </div>
         </div>
       </Layout>

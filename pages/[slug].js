@@ -7,12 +7,14 @@ import cn from 'classnames';
 import Header from '../components/header'
 import Layout from '../components/layout'
 import Body from '../components/body'
+import AnimateElement from '../components/AnimateElement';
 import { getPage, getFooter, getHomepageProjectSlugs, getAllPagesWithSlug } from '../lib/api'
 import { CMS_NAME } from '../lib/constants'
 
 import styles from './[slug].module.scss'
 
 export default function Page({ page, previousPageSlug, nextPageSlug, parentPageSlug, footer, preview, innerHeight }) {
+
   const router = useRouter();
 
   if (!router.isFallback && !page) {
@@ -57,17 +59,23 @@ export default function Page({ page, previousPageSlug, nextPageSlug, parentPageS
             >
               <div className="grid">
                 <div className="grid-left"></div>
-                <div className="grid-center">
+                <AnimateElement
+                  id={router.asPath}
+                  className="grid-center"
+                >
                   <h1 className={styles.bodyHeader}>{page.title}</h1>
-                </div>
+                </AnimateElement>
                 <div className="grid-right"></div>
               </div>
 
               <div className="grid">
                 <div className="grid-widescreen-left"></div>
-                <div className="grid-widescreen-center">
+                <AnimateElement
+                  id={router.asPath}
+                  className="grid-widescreen-center"
+                >
                   <Body body={page.body} />
-                </div>
+                </AnimateElement>
                 <div className="grid-widescreen-right"></div>
               </div>
             </div>
