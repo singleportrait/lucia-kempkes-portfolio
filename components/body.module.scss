@@ -97,6 +97,16 @@ $grid_gap: ".5rem";
     margin-top: 0;
   }
 
+  // In case there are empty p tags after images
+  + p:empty {
+    display: none;
+
+    // And, in case there are new text block sections after *those*
+    & + hr {
+      margin-bottom: 0;
+    }
+  }
+
   // Manually calculating grid widths to properly align on mobile...
   @media screen and (max-width: 700px) {
     margin-left: calc((#{$column_width} * 2) + #{$grid_gap} + .5rem);
