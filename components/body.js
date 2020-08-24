@@ -22,7 +22,7 @@ export default function Body(props) {
                 paddingTop: `${fields.file.details.image.height/fields.file.details.image.width*100}%`,
               }}
             >
-              <img className={styles.image} src={`${fields.file.url}`} />
+              <img className={styles.image} src={`${fields.file.url}?fm=jpg&fl=progressive&w=2000&q=80`} />
             </div>
           }
           { fields?.file.contentType.includes("video") &&
