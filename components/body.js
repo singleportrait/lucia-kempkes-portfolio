@@ -7,6 +7,11 @@ import styles from './body.module.scss'
 export default function Body(props) {
 
   const options = {
+    renderText: text => {
+      return text.split('\n').reduce((children, textSegment, index) => {
+        return [...children, index > 0 && <br key={index} />, textSegment];
+      }, []);
+    },
     renderNode: {
       [BLOCKS.EMBEDDED_ENTRY]: (node) => (
         <div style={{border: "1px solid #000", padding: "1rem"}}>
