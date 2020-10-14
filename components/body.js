@@ -14,41 +14,39 @@ export default function Body(props) {
         </div>
       ),
       [BLOCKS.EMBEDDED_ASSET]: ({data: {target: { fields }}}) => (
-        <>
-          <figure className={styles.figure}>
-            { fields?.file.contentType.includes("image") &&
-              <div
-                className={styles.imageContainer}
-                style={{
-                  paddingTop: `${fields.file.details.image.height/fields.file.details.image.width*100}%`,
-                }}
-              >
-                <img className={styles.image} src={`${fields.file.url}?fm=jpg&fl=progressive&w=2000&q=80`} />
-              </div>
-            }
-            { fields?.file.contentType.includes("video") &&
-              <video
-                controls
-                muted
-                autoPlay
-                preload="true"
-                playsInline
-              >
-                <source
-                  src={fields.file.url}
-                  type={fields.contentType}
-                />
-              </video>
-            }
-            { (fields.title || fields.description) &&
-              <figcaption className={styles.caption}>
-                {fields.title}
-                {fields.description && `, ${fields.description}`}
-              </figcaption>
-            }
-            { !(fields.title || fields.description) && <br /> }
-          </figure>
-        </>
+        <figure className={styles.figure}>
+          { fields?.file.contentType.includes("image") &&
+            <div
+              className={styles.imageContainer}
+              style={{
+                paddingTop: `${fields.file.details.image.height/fields.file.details.image.width*100}%`,
+              }}
+            >
+              <img className={styles.image} src={`${fields.file.url}?fm=jpg&fl=progressive&w=2000&q=80`} />
+            </div>
+          }
+          { fields?.file.contentType.includes("video") &&
+            <video
+              controls
+              muted
+              autoPlay
+              preload="true"
+              playsInline
+            >
+              <source
+                src={fields.file.url}
+                type={fields.contentType}
+              />
+            </video>
+          }
+          { (fields.title || fields.description) &&
+            <figcaption className={styles.caption}>
+              {fields.title}
+              {fields.description && `, ${fields.description}`}
+            </figcaption>
+          }
+          { !(fields.title || fields.description) && <br /> }
+        </figure>
       ),
       [INLINES.ENTRY_HYPERLINK]: (node) => (
         <Link as={node.data.target.fields.slug} href="[slug]">
