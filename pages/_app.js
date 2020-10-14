@@ -9,8 +9,16 @@ import '../styles/base.scss'
 function MyApp({ Component, pageProps, router }) {
   const [innerHeight, setInnerHeight] = useState("0");
   useEffect(() => {
-    setInnerHeight(window.innerHeight + "px");
-  })
+    function setPageHeight() {
+      setInnerHeight(window.innerHeight + "px");
+    }
+
+    window.addEventListener("resize", setPageHeight);
+
+    setPageHeight();
+
+    return () => window.removeEventListener("resize", setPageHeight);
+  }, [])
 
   // Including this AnimatePresence here allows [slug] pages to animate when leaving and coming back to the index page
   const animationVariants = {
