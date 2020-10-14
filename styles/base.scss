@@ -6,6 +6,7 @@
   --background-color: #fff;
   --accent-color: #FFE600;
   --neutral-color: #999;
+  --dark-neutral-color: #666;
 
   --header-height: 4rem;
   --footer-links-height: 3rem;
@@ -95,9 +96,9 @@ strong, b {
   font-weight: bold;
 }
 
-small {
+small, figcaption {
   font-family: var(--header-font);
-  color: var(--neutral-color);
+  color: var(--dark-neutral-color);
   font-size: .9rem;
 }
 

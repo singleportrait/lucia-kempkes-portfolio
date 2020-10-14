@@ -88,13 +88,14 @@ $element_indent: "3rem";
 $column_width: "((100vw - (11 * .5rem)) / 12)";
 $grid_gap: ".5rem";
 
-.caption {
-  display: inline-block;
-  padding-top: .25rem;
-  padding-bottom: 1rem;
-
+.figure {
   + hr {
     margin-top: 0;
+  }
+
+  // For borders separating images
+  + hr + figure {
+    padding-top: 1rem;
   }
 
   // In case there are empty p tags after images
@@ -106,16 +107,16 @@ $grid_gap: ".5rem";
       margin-bottom: 0;
     }
   }
+}
+
+.caption {
+  display: inline-block;
+  padding-top: .25rem;
+  padding-bottom: 1rem;
 
   // Manually calculating grid widths to properly align on mobile...
   @media screen and (max-width: 700px) {
     margin-left: calc((#{$column_width} * 2) + #{$grid_gap} + .5rem);
     margin-right: calc((#{$column_width} * 2) + #{$grid_gap} + .5rem);
   }
-}
-
-.captionTitle {
-  font-family: var(--body-font);
-  font-style: italic;
-  font-size: .88rem;
 }

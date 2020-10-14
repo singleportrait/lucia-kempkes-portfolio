@@ -15,35 +15,39 @@ export default function Body(props) {
       ),
       [BLOCKS.EMBEDDED_ASSET]: ({data: {target: { fields }}}) => (
         <>
-          { fields?.file.contentType.includes("image") &&
-            <div
-              className={styles.imageContainer}
-              style={{
-                paddingTop: `${fields.file.details.image.height/fields.file.details.image.width*100}%`,
-              }}
-            >
-              <img className={styles.image} src={`${fields.file.url}?fm=jpg&fl=progressive&w=2000&q=80`} />
-            </div>
-          }
-          { fields?.file.contentType.includes("video") &&
-            <video
-              controls
-              muted
-              autoPlay
-              preload="true"
-              playsInline
-            >
-              <source
-                src={fields.file.url}
-                type={fields.contentType}
-              />
-            </video>
-          }
-          <small className={styles.caption}>
-            <span className={styles.captionTitle}>{fields.title}</span>
-            {fields.description && ", "}
-            {fields.description}
-          </small>
+          <figure className={styles.figure}>
+            { fields?.file.contentType.includes("image") &&
+              <div
+                className={styles.imageContainer}
+                style={{
+                  paddingTop: `${fields.file.details.image.height/fields.file.details.image.width*100}%`,
+                }}
+              >
+                <img className={styles.image} src={`${fields.file.url}?fm=jpg&fl=progressive&w=2000&q=80`} />
+              </div>
+            }
+            { fields?.file.contentType.includes("video") &&
+              <video
+                controls
+                muted
+                autoPlay
+                preload="true"
+                playsInline
+              >
+                <source
+                  src={fields.file.url}
+                  type={fields.contentType}
+                />
+              </video>
+            }
+            { (fields.title || fields.description) &&
+              <figcaption className={styles.caption}>
+                {fields.title}
+                {fields.description && `, ${fields.description}`}
+              </figcaption>
+            }
+            { !(fields.title || fields.description) && <br /> }
+          </figure>
         </>
       ),
       [INLINES.ENTRY_HYPERLINK]: (node) => (
