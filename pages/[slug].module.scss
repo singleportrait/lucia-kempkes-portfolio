@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+.subscribeForm {
+  border: 1px solid var(--neutral-color);
+  margin-bottom: 1rem;
+
+  @media screen and (max-width: 700px) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
 .bodyFooter {
   border-top: 1px solid var(--accent-color);
   text-align: center;

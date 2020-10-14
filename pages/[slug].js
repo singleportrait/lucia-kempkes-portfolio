@@ -8,6 +8,9 @@ import Header from '../components/header'
 import Layout from '../components/layout'
 import Body from '../components/body'
 import AnimateElement from '../components/AnimateElement';
+
+import __subscribeForm from '../html/subscribeForm';
+
 import { getPage, getFooter, getHomepageProjectSlugs, getAllPagesWithSlug } from '../lib/api'
 import { CMS_NAME } from '../lib/constants'
 
@@ -24,6 +27,8 @@ export default function Page({ page, previousPageSlug, nextPageSlug, parentPageS
   }
 
   const today = new Date();
+
+  const subscribeFormHTML = { __html: __subscribeForm };
 
   return (
     <Layout
@@ -74,6 +79,9 @@ export default function Page({ page, previousPageSlug, nextPageSlug, parentPageS
                   id={router.asPath}
                   className="grid-widescreen-center"
                 >
+                  { page.slug === "subscribe" &&
+                    <div className={styles.subscribeForm} dangerouslySetInnerHTML={subscribeFormHTML} />
+                  }
                   <Body body={page.body} />
                 </AnimateElement>
                 <div className="grid-widescreen-right"></div>

@@ -115,6 +115,17 @@ img, video {
   display: block;
 }
 
+/* Styling Mailchimp Form */
+label, input {
+  font-family: var(--header-font);
+  font-size: inherit;
+}
+
+.indicates-required {
+  font-family: var(--body-font);
+}
+/* */
+
 .content {
   position: relative;
   z-index: 1; /* For the background grid lines on mobile */
