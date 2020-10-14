@@ -19,7 +19,7 @@ export default function Body(props) {
         </div>
       ),
       [BLOCKS.EMBEDDED_ASSET]: ({data: {target: { fields }}}) => (
-        <>
+        <figure className={styles.figure}>
           { fields?.file.contentType.includes("image") &&
             <div
               className={styles.imageContainer}
@@ -44,12 +44,14 @@ export default function Body(props) {
               />
             </video>
           }
-          <small className={styles.caption}>
-            <span className={styles.captionTitle}>{fields.title}</span>
-            {fields.description && ", "}
-            {fields.description}
-          </small>
-        </>
+          { (fields.title || fields.description) &&
+            <figcaption className={styles.caption}>
+              {fields.title}
+              {fields.description && `, ${fields.description}`}
+            </figcaption>
+          }
+          { !(fields.title || fields.description) && <br /> }
+        </figure>
       ),
       [INLINES.ENTRY_HYPERLINK]: (node) => (
         <Link as={node.data.target.fields.slug} href="[slug]">
