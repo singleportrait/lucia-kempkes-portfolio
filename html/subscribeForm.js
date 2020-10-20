@@ -9,7 +9,7 @@ module.exports = `
 <div id="mc_embed_signup">
 <form action="https://luciakempkes.us3.list-manage.com/subscribe/post?u=5d18b57e2faae98718bb96d36&amp;id=54af65277c" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
-	<h5>Subscribe to the newsletter for upcoming shows and events</h5>
+	<h4>Subscribe to the newsletter for upcoming shows and events</h4>
 <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
 <div class="mc-field-group">
 	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
