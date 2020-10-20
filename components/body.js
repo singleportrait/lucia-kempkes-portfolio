@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import cn from 'classnames';
 
 import styles from './body.module.scss'
 
@@ -19,7 +20,7 @@ export default function Body(props) {
         </div>
       ),
       [BLOCKS.EMBEDDED_ASSET]: ({data: {target: { fields }}}) => (
-        <figure className={styles.figure}>
+        <figure className={cn(styles.figure, (!fields.title && !fields.description) && styles.figureWithoutCaption)}>
           { fields?.file.contentType.includes("image") &&
             <div
               className={styles.imageContainer}
@@ -50,7 +51,6 @@ export default function Body(props) {
               {fields.description && `, ${fields.description}`}
             </figcaption>
           }
-          { !(fields.title || fields.description) && <br /> }
         </figure>
       ),
       [INLINES.ENTRY_HYPERLINK]: (node) => (

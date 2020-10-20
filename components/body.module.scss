@@ -1,13 +1,18 @@
 $selectors: "p, h1, h2, h3, h4, h5, h6, blockquote, ul, ol";
 
 $element_indent: "3rem";
+$element_margin: 1.5rem;
 
 .body {
   margin-bottom: 1rem;
 
   a {
     text-decoration: underline;
-   }
+  }
+
+  p:empty {
+    display: none;
+  }
 
   hr {
     margin: 0;
@@ -28,7 +33,7 @@ $element_indent: "3rem";
     background-color: #fff;
 
     & + hr {
-      margin-bottom: 1rem;
+      margin-bottom: $element_margin;
       margin-top: 0;
     }
   }
@@ -89,18 +94,20 @@ $column_width: "((100vw - (11 * .5rem)) / 12)";
 $grid_gap: ".5rem";
 
 .figure {
+
   + hr {
     margin-top: 0;
   }
 
   // For borders separating images
   + hr + .figure {
-    padding-top: 1rem;
+    padding-top: $element_margin;
   }
 
   // In case there are empty p tags after images
   + p:empty {
-    display: none;
+    // No longer necessary because we are hiding all empty P tags above
+    // display: none;
 
     // And, in case there are new text block sections after *those*
     & + hr {
@@ -112,11 +119,20 @@ $grid_gap: ".5rem";
 .caption {
   display: inline-block;
   padding-top: .25rem;
-  padding-bottom: 1rem;
+  padding-bottom: $element_margin;
 
   // Manually calculating grid widths to properly align on mobile...
   @media screen and (max-width: 700px) {
     margin-left: calc((#{$column_width} * 2) + #{$grid_gap} + .5rem);
     margin-right: calc((#{$column_width} * 2) + #{$grid_gap} + .5rem);
   }
+}
+
+.figureWithoutCaption {
+  // Margin to account for height of caption with its included padding
+  // margin-bottom: calc(.25rem + .9rem + $element_margin);
+
+  // Simpler; doesn't quite match the captions, but matches the design of the
+  // page a bit more cleanly
+  margin-bottom: 2rem;
 }
