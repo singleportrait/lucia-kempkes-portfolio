@@ -139,22 +139,24 @@ label, input {
 
 $narrow_grid_width: 944px;
 $responsive_grid_width: 98vw;
-$max_grid_width: 1400px;
+$max_grid_width: 1100px;
 
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: 1rem;
-  width: $narrow_grid_width;
+  min-width: $narrow_grid_width;
   max-width: 100%;
   margin: 0 auto;
   height: 100%;
 
-  @media screen and (min-width: 1100px) {
-    width: $responsive_grid_width;
+  @media screen and (max-width: 957px) {
+    width: 100%;
+    min-width: auto;
   }
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 958px) {
+    width: $responsive_grid_width;
     max-width: $max_grid_width;
   }
 }
@@ -188,15 +190,10 @@ $max_grid_width: 1400px;
   // Odd media query to account for scrollbars
   @media screen and (min-width: 957px) {
     left: 50%;
-    margin-left: -($narrow_grid_width/2);
-  }
-
-  @media screen and (min-width: 1100px) {
     margin-left: -($responsive_grid_width/2);
   }
 
-  // Odd media query to account for scrollbars
-  @media screen and (min-width: 1430px) {
+  @media screen and (min-width: 1100px) {
     margin-left: -($max_grid_width/2);
   }
 }
