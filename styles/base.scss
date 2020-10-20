@@ -127,16 +127,20 @@ img, video {
   display: block;
 }
 
-// Styling Mailchimp Form
+/* Styling Mailchimp Form */
 label, input {
   font-family: var(--header-font);
-  font-size: inherit;
+  font-size: 1rem;
 }
 
 .indicates-required {
   font-family: var(--body-font);
 }
-// End
+
+.mce_inline_error {
+  font-family: var(--header-font);
+}
+/* End */
 
 .content {
   position: relative;
