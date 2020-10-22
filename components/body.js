@@ -33,6 +33,7 @@ export default function Body(props) {
           }
           { fields?.file.contentType.includes("video") &&
             <video
+              className={styles.video}
               controls
               muted
               autoPlay
