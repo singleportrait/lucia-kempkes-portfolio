@@ -24,7 +24,7 @@ export default function HomepageLinks({projects, activeProject, setActiveProject
                 onMouseEnter={() => !isPortraitAndMobile && setActiveProject(slug)}
                 onMouseLeave={() => !isPortraitAndMobile && setActiveProject()}
               >
-                {title}
+                {title.trim()}
               </a>
             </Link>
           </h2>
@@ -32,7 +32,7 @@ export default function HomepageLinks({projects, activeProject, setActiveProject
         {/* If mobile and there isn't an active project, show all as visible */}
         { isPortraitAndMobile && activeProject !== slug &&
           <h2 className={cn(styles.homepageH1, "h1")}>
-            <span className={styles.homepageLink} onClick={() => setActiveProject(slug)}>{title}</span>
+            <span className={styles.homepageLink} onClick={() => setActiveProject(slug)}>{title.trim()}</span>
           </h2>
         }
       </li>
