@@ -37,6 +37,7 @@ export default function Body(props) {
               controls
               muted
               autoPlay
+              loop
               preload="true"
               playsInline
             >
