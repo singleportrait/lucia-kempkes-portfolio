@@ -59,10 +59,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, .h1 {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
 
-  @media screen and (max-width: 810px) {
-    font-size: 2rem;
+  @media screen and (max-width: 1000px) {
+    font-size: 1.9rem;
   }
 
   @media screen and (max-width: 700px) {
