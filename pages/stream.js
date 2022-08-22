@@ -16,7 +16,7 @@ export default function StreamPage(props) {
             className={styles.video}
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture"
-            ></iframe>
+          ></iframe>
         </div>
         <script src="https://player.vimeo.com/api/player.js"></script>
       </div>
