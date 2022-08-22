@@ -202,11 +202,11 @@ $max_grid_width: 1100px;
   // Odd media query to account for scrollbars
   @media screen and (min-width: 957px) {
     left: 50%;
-    margin-left: -($responsive_grid_width/2);
+    margin-left: calc($responsive_grid_width / -2);
   }
 
   @media screen and (min-width: 1100px) {
-    margin-left: -($max_grid_width/2);
+    margin-left: calc($max_grid_width / -2);
   }
 }
 
