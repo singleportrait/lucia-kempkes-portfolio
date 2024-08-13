@@ -9,22 +9,22 @@
     "setup": "node ./contentful/setup.js $CONTENTFUL_SPACE_ID $CONTENTFUL_MANAGEMENT_TOKEN"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "13.4.0",
+    "@contentful/rich-text-react-renderer": "^15.12.1",
     "classnames": "2.2.6",
-    "contentful": "7.14.4",
+    "contentful": "^9.1.34",
     "framer-motion": "^2.3.0",
     "json-stringify-safe": "^5.0.1",
-    "next": "9.3.6",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "next": "12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-json-pretty": "^2.2.0",
     "react-responsive": "^8.1.0",
-    "sass": "^1.26.8"
+    "sass": "^1.54.5"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
-    "contentful-import": "^7.7.12",
+    "contentful-import": "^8.3.2",
     "dotenv": "8.2.0",
-    "postcss-preset-env": "^6.7.0"
+    "postcss-preset-env": "^7.8.0"
   }
 }

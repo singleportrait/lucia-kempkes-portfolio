@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import cn from 'classnames'
 
 import styles from './homepageImages.module.scss'
@@ -10,7 +11,7 @@ export default function HomepageImages(props) {
     >
       <div className={styles.homepageImages}>
         { props.projects.map(({fields: { slug, horizontalPreviewImage, verticalPreviewImage }}, i) =>
-          <React.Fragment key={i}>
+          <Fragment key={i}>
             { props.verticalImages &&
               <>
                 { verticalPreviewImage?.fields.file.contentType.includes("image") &&
@@ -64,7 +65,7 @@ export default function HomepageImages(props) {
                 }
               </>
             }
-          </React.Fragment>
+          </Fragment>
         )}
       </div>
     </div>
